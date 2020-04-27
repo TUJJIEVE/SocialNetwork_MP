@@ -1,0 +1,26 @@
+<% header "all Messages" %>
+
+<%= @messages.length %>
+
+<% @messages.each do |m| %>
+
+    <div>
+        <%= m.user_id %> : <%= m.body %> 
+    </div>
+
+<% end %>
+
+<%= form_for(:Message, url: create_new_message_path , html: { method: :put }) do |f| %>
+            
+    <%= hidden_field_tag 'id', @conversation.id %>
+
+    <div class="form-group">
+        <%= f.label :new_message %>
+        <%= f.text_field :body, class: 'form-control' %>
+    </div>  
+
+    <%= f.submit "Send", class: 'btn btn-primary' %>
+
+<% end %>
+
+

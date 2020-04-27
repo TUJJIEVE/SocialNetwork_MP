@@ -1,0 +1,33 @@
+<%= @user_profile.uname %>
+
+<%= @user_profile.full_name %>
+
+<%= @user_profile.college_id %>
+
+<%= @user_profile.country %>
+
+<%= @user_profile.image %>
+
+<%= @user_profile.points %>
+
+<%= @user_profile.created_on %>
+
+<%= @user_profile.last_active %>
+
+<%=@user_profile.user_id %>
+
+
+<%if @user_profile.profile_picture.attached? %>
+
+    <%= image_tag @user_profile.profile_picture %>
+
+<% else %>
+
+    <%= image_tag asset_path(@user_profile.image) %>
+
+<%end%>
+
+
+
+
+

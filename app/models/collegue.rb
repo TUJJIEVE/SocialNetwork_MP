@@ -1,0 +1,2 @@
+class Collegue < ApplicationRecord
+end
