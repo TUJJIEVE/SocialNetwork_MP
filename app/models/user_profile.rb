@@ -1,5 +1,5 @@
 class UserProfile < ApplicationRecord
-    belongs_to :user
+    belongs_to :user 
     after_initialize :init
 
     has_one_attached :profile_picture
@@ -34,10 +34,6 @@ class UserProfile < ApplicationRecord
         #creating new UserProfile when user is not there
         v = UserProfile.new
         v.user_id = id
-        puts " athisadskasd "
-        puts v 
-        puts  " "
-        puts " "
 
         if v.save 
             puts "creating user profile"

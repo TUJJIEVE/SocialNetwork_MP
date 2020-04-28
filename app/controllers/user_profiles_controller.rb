@@ -49,17 +49,17 @@ class UserProfilesController < ApplicationController
         puts "saved hurrey....\n\nreached some where\n\n....."
     end
     
-    def create
-        @current_user_profile = UserProfile.new(profile_params)
-        @current_user_profile.id = current_user.id    
-        @current_user_profile.user_id = current_user.id    
-        if @current_user_profile.save
-            flash[:success] = "Profile saved"
-            puts "saved hurrey....\n\nadfasdfadsf\n\n....."
-        else 
-            flash[:error] = "Profile not saved"
-            puts "craped up......\n\nadfasdfadsf\n\n......."
-        end        
-        respond_with(@current_user_profile)
-    end
+    # def create
+    #     @current_user_profile = UserProfile.new(profile_params)
+    #     @current_user_profile.id = current_user.id    
+    #     @current_user_profile.user_id = current_user.id    
+    #     if @current_user_profile.save
+    #         flash[:success] = "Profile saved"
+    #         puts "saved hurrey....\n\nadfasdfadsf\n\n....."
+    #     else 
+    #         flash[:error] = "Profile not saved"
+    #         puts "craped up......\n\nadfasdfadsf\n\n......."
+    #     end        
+    #     respond_with(@current_user_profile)
+    # end
 end
