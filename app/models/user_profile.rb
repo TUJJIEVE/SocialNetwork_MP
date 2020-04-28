@@ -1,31 +1,26 @@
 class UserProfile < ApplicationRecord
-    belongs_to :user 
-    after_initialize :init
+    belongs_to :user     
 
-    has_one_attached :profile_picture    
-
-    def init
-        self.uname ||= "def_uname" if self.has_attribute? :uname
-        self.full_name ||= "def_fullname" if self.has_attribute? :full_name
-        self.college_id ||= "def_collegeId" if self.has_attribute? :college_id
-        self.country ||= "india" if self.has_attribute? :country
-        self.points ||= 0 if self.has_attribute? :points                        
-    end
-    
-    def UserProfile::Create(id)
-        v = UserProfile.where({"user_id" => id})        
-        if v.length > 0 
-            return v[0]
-        end       
-        #creating new UserProfile when user is not there
-        v = UserProfile.new
-        v.user_id = id
-        if v.save 
+    has_one_attached :profile_picture  , :dependent => :purge_later
+ 
+    def UserProfile::Create(user_id)                
+        user_profile = UserProfile.new
+        user_profile.user_id = user_id
+        if user_profile.save 
             puts "creating user profile"
         else
             puts "error creating user profile"
-            puts v.errors.full_messages
+            puts user_profile.errors.full_messages
+            return nil
         end
-        return v
+        return user_profile
     end
+
+    def UserProfile::Find(id)
+        user_profiles = UserProfile.where({"user_id" => id})        
+        if user_profiles.length > 0 
+            return user_profiles[0]
+        end       
+        return nil
+    end 
 end
