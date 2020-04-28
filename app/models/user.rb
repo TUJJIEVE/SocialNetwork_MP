@@ -9,9 +9,7 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :user_profile
 
-  before_save :init_user_profile  
-
-
+  after_save :init_user_profile  
 
   #############################################################
   #

@@ -27,9 +27,24 @@ class UserProfile < ApplicationRecord
     end
     
     def UserProfile::Create(id)
+        v = UserProfile.where({"user_id" => id})        
+        if v.length > 0 
+            return v[0]
+        end       
+        #creating new UserProfile when user is not there
         v = UserProfile.new
         v.user_id = id
-        v.save
+        puts " athisadskasd "
+        puts v 
+        puts  " "
+        puts " "
+
+        if v.save 
+            puts "creating user profile"
+        else
+            puts "error creating user profile"
+            puts v.errors.full_messages
+        end
         v
     end
 end
