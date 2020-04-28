@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_23_040926) do
+ActiveRecord::Schema.define(version: 2020_04_28_062419) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 2020_04_23_040926) do
     t.time "dob"
     t.string "college_id"
     t.string "country"
-    t.binary "image"
     t.integer "points"
     t.time "created_on"
     t.time "last_active"

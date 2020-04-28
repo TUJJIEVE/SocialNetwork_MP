@@ -6,7 +6,6 @@
 
 <%= @user_profile.country %>
 
-<%= @user_profile.image %>
 
 <%= @user_profile.points %>
 
@@ -23,7 +22,7 @@
 
 <% else %>
 
-    <%= image_tag asset_path(@user_profile.image) %>
+    <%= image_tag asset_path("doctor.jpg") %>
 
 <%end%>
 

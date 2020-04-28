@@ -1,6 +1,5 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
   devise :database_authenticatable, :registerable,
        :recoverable, :rememberable, :validatable, :confirmable, :lockable
 
@@ -11,11 +10,6 @@ class User < ApplicationRecord
 
   after_save :init_user_profile  
 
-  #############################################################
-  #
-  # NEED TO THINK OF A BETTER WAY than USING cREATE HERE      #
-  #
-  #############################################################
   def init_user_profile    
     @current_user_profile = UserProfile.Create(self.id)
     @current_user_profile 
