@@ -1,7 +1,7 @@
 class TagsController < ApplicationController
     def create
         @tag = Tag.create
-        @tag.name = params["Tag"]["name"]
+        @tag.name = params["Tag"]["name"].downcase
         @tag.user_id = current_user.id
         if @tag.save 
             flash[:notice] = "new tag saved successfully"

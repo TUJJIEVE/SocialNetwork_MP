@@ -54,11 +54,15 @@
 <div class="userProfileWindow">
     <h1> Interests : </h1>
     <% if current_user != nil && current_user.id == @user_profile.user_id %>
-        <h5> <%= link_to 'edit your intrests', edit_user_profile_path %> </h5>
+        <h5> <%= link_to 'edit your intrests', edit_user_intersts_path %> </h5>
     <% end %>
 
-    <div class="form-group">        
-        <input type="text" class="form-control" value="<%= @user_profile.points %>"readonly>    
+    <div class="form-group">                
+        <% @intersts.each do |t| %>    
+            <div class="card">        
+            <%= t.tag.name.to_s.capitalize %> 
+            </div>
+        <% end %>          
     </div>
 </div>  
 </div>

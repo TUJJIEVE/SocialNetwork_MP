@@ -9,6 +9,7 @@ class UserProfilesController < ApplicationController
             id = params["id"].to_i
         end                
         @user_profile = UserProfile.where({:user_id => id}).last
+        @intersts = UserInterst.Find_by_User(current_user.id)
     end       
 
     def edit
@@ -16,6 +17,45 @@ class UserProfilesController < ApplicationController
             @user_profile = UserProfile.where({:user_id => current_user.id}).last        
         else
             redirect_to dont_do_mischievous_path
+        end
+    end
+
+    def edit_intersts
+        if user_signed_in?
+            @intersts = UserInterst.Find_by_User(current_user.id)            
+        else
+            redirect_to dont_do_mischievous_path        
+        end
+    end
+
+    def update_intrests
+        if user_signed_in?
+            tagIds = []
+            puts "==============================="
+            tag_names = params["tags"].split(",")
+            puts "tags :: " 
+            tag_names.each do |tag_name|
+                if tag_name.length > 0 
+                    puts tag_name
+                    id = Tag.GetId(tag_name.squish) #squish will remove trailing spaces
+                    if id != nil 
+                        tagIds << id
+                    else 
+                        puts "error :: unknown tag entered"
+                    end
+                end
+            end
+            puts "==================================="
+            puts tagIds
+
+            UserInterst::Delete_by_User(current_user.id)
+
+            tagIds.each do |tag_id|
+                UserInterst.Create(current_user.id,tag_id)
+            end
+            redirect_to current_user_profile_path
+        else
+            redirect_to dont_do_mischievous_path        
         end
     end
 
