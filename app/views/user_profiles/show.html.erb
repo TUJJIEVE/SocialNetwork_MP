@@ -39,12 +39,12 @@
 <div class="userProfileWindow">
     <div class="form-group">
         <label>Profile Picture:</label>
-        <div id="displayProfilePicture">
-        <%if @user_profile.profile_picture.attached? %>
-            <%= image_tag(@user_profile.profile_picture) %>
-        <% else %>
-            <%= image_tag(asset_path("doctor.jpg")) %>            
-        <%end%>
+        <div>
+            <%if @user_profile.profile_picture.attached? %>
+                <%= image_tag(@user_profile.profile_picture,:class=>"displayProfilePictureInEdit")%>
+            <% else %>
+                <%= image_tag(asset_path("doctor.jpg"),:class=>"displayProfilePictureInEdit") %>            
+            <%end%>
         </div>
     </div>    
 </div>

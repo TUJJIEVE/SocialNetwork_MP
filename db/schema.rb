@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_062419) do
+ActiveRecord::Schema.define(version: 2020_04_29_081046) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -68,6 +68,15 @@ ActiveRecord::Schema.define(version: 2020_04_28_062419) do
     t.index ["name"], name: "index_tags_on_name"
   end
 
+  create_table "user_intersts", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tag_id"], name: "index_user_intersts_on_tag_id"
+    t.index ["user_id"], name: "index_user_intersts_on_user_id"
+  end
+
   create_table "user_profiles", force: :cascade do |t|
     t.string "uname"
     t.string "full_name"
@@ -110,5 +119,7 @@ ActiveRecord::Schema.define(version: 2020_04_28_062419) do
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "tags", "users"
+  add_foreign_key "user_intersts", "tags"
+  add_foreign_key "user_intersts", "users"
   add_foreign_key "user_profiles", "users"
 end
