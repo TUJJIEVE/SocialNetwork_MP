@@ -2,9 +2,13 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'pages#index'
-  get '/user_profiles/', to: 'user_profiles#show', as: :show_user_profile  
+
   get '/user_profiles/edit/', to: 'user_profiles#edit', as: :edit_user_profile
   put '/user_profiles/edit/', to: 'user_profiles#update', as: :edit_user_profile_request
+
+  get '/user_profiles/:id/', to: 'user_profiles#show', as: :show_user_profile  
+  get '/user_profiles/', to: 'user_profiles#show', as: :current_user_profile  
+
   get '/conversations/', to: 'conversations#index', as: :my_conversations
   put '/conversation/', to: 'conversations#create', as: :conversation
   

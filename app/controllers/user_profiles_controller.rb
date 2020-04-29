@@ -1,24 +1,21 @@
 class UserProfilesController < ApplicationController
 
-    def show
-        puts current_user.id
-        puts "sadfjasldkfnsladf=======================asfdsadf"
-        puts params
-        puts "asdfasdfa========================"
-        # debug params
-        # flash[:success] = "what is this...." + current_user.id
-        @user_profile = UserProfile.where({:user_id => current_user.id}).last
-    end
-    
-    def index
-        @user_profiles = UserProfile.all
-    end    
+    def show                
+        id = 0
+        if user_signed_in?
+            id = current_user.id
+        end
+        if params["id"] != nil 
+            id = params["id"].to_i
+        end                
+        @user_profile = UserProfile.where({:user_id => id}).last
+    end       
 
     def edit
         if user_signed_in? 
             @user_profile = UserProfile.where({:user_id => current_user.id}).last        
         else
-            @user_profile = nil
+            redirect_to dont_do_mischievous_path
         end
     end
 

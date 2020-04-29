@@ -32,7 +32,7 @@
                 <li><%= link_to 'change password', edit_user_registration_path %></li>
                 <li><%= link_to 'conversations', my_conversations_path %></li>
                 <li><%= link_to 'edit Personal Information', edit_user_profile_path %></li>
-                <li><%= link_to 'show Personal Information', show_user_profile_path %></li>
+                <li><%= link_to 'show Personal Information', current_user_profile_path %></li>
                 <li><%= link_to 'all tags', all_tags_path %></li>
                 <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
               </ul>

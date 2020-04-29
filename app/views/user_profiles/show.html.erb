@@ -1,32 +1,70 @@
-<%= @user_profile.uname %>
+<% if @user_profile != nil %>
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-4">
+<div class="userProfileWindow">
+    <h1> <%= "User Profile " %> </h1>
 
-<%= @user_profile.full_name %>
+    <% if current_user != nil && current_user.id == @user_profile.user_id %>
+        <h5> <%= link_to 'edit below Information', edit_user_profile_path %> </h5>
+    <% end %>
 
-<%= @user_profile.college_id %>
+    <div class="form-group">
+        <label>uName:</label>
+        <input type="text" class="form-control" value="<%= @user_profile.uname %>"readonly>    
+    </div>
 
-<%= @user_profile.country %>
+    <div class="form-group">
+        <label>FullName:</label>
+        <input type="text" class="form-control" value="<%= @user_profile.full_name %>"readonly>    
+    </div>
 
+    <div class="form-group">
+        <label>College Name:</label>
+        <input type="text" class="form-control" value="<%= @user_profile.college_id%>"readonly>    
+    </div>
 
-<%= @user_profile.points %>
+    <div class="form-group">
+        <label>Country:</label>
+        <input type="text" class="form-control" value="<%= @user_profile.country %>"readonly>    
+    </div>
 
-<%= @user_profile.created_on %>
+    <div class="form-group">
+        <label>points :</label>
+        <input type="text" class="form-control" value="<%= @user_profile.points %>"readonly>    
+    </div>
+</div>
+</div>
 
-<%= @user_profile.last_active %>
+<div class="col-sm-12 col-md-4 col-lg-4">
+<div class="userProfileWindow">
+    <div class="form-group">
+        <label>Profile Picture:</label>
+        <div id="displayProfilePicture">
+        <%if @user_profile.profile_picture.attached? %>
+            <%= image_tag(@user_profile.profile_picture) %>
+        <% else %>
+            <%= image_tag(asset_path("doctor.jpg")) %>            
+        <%end%>
+        </div>
+    </div>    
+</div>
+</div>
 
-<%=@user_profile.user_id %>
+<div class="col-sm-12 col-md-4 col-lg-4">
+<div class="userProfileWindow">
+    <h1> Interests : </h1>
+    <% if current_user != nil && current_user.id == @user_profile.user_id %>
+        <h5> <%= link_to 'edit your intrests', edit_user_profile_path %> </h5>
+    <% end %>
 
+    <div class="form-group">        
+        <input type="text" class="form-control" value="<%= @user_profile.points %>"readonly>    
+    </div>
+</div>  
+</div>
 
-<%if @user_profile.profile_picture.attached? %>
-
-    <%= image_tag @user_profile.profile_picture %>
-
+</div>
+</div>
 <% else %>
-
-    <%= image_tag asset_path("doctor.jpg") %>
-
-<%end%>
-
-
-
-
-
+<% header "No such user exists" %>
+<% end %>
