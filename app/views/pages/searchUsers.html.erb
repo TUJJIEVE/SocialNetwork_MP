@@ -1,1 +1,13 @@
-<%= header "no users found" %>
+<div class="displayWindow">
+<h1>Results : </h1>
+<h4>Number of Results: <%= @users.length %> </h4>
+<% number = 1 %>
+<% @users.each do |u| %>
+    <div class="card">
+        <%= number %>.
+        <%= u.full_name %>
+        <%= link_to 'show Personal Information', show_user_profile_path(u.user_id) %>
+        <% number+=1 %>
+    <div>
+<% end %>
+</div>

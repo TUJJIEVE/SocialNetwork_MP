@@ -22,7 +22,7 @@
       <div id="userSearch">
         <%= form_with(as: "userSearch", url: search_users_path , html: { method: :get },local: true) do |f| %>
           <div class="form-group">    
-            <%= f.text_field :keyword, class: 'form-control' , placeholder: "search User with uname" %>
+            <%= f.text_field :keyword, class: 'form-control' , placeholder: "search User with fullname" %>
           </div>        
           <%= f.submit "searchUsers", class: 'btn btn-secondary' %>          
         <% end %>
