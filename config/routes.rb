@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'pages#index'
 
+  get '/users/search/' , to: 'pages#searchUsers' , as: :search_users
+
   get '/user_profiles/edit/intersts/', to: 'user_profiles#edit_intersts', as: :edit_user_intersts
   put '/user_profiles/edit/intersts/', to: 'user_profiles#update_intrests', as: :edit_user_intersts_request
 
