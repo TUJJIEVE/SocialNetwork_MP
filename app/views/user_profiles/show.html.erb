@@ -19,6 +19,11 @@
     </div>
 
     <div class="form-group">
+        <label>DOB:</label>
+        <input type="text" class="form-control" value="<%= @user_profile.dob %>"readonly>    
+    </div>
+
+    <div class="form-group">
         <label>College Name:</label>
         <input type="text" class="form-control" value="<%= @user_profile.college_id%>"readonly>    
     </div>
@@ -57,12 +62,21 @@
         <h5> <%= link_to 'edit your intrests', edit_user_intersts_path %> </h5>
     <% end %>
 
-    <div class="form-group">                
+    <div class="form-group"> 
+    <% if @intersts != nil %>
+        <div class="form-group">
         <% @intersts.each do |t| %>    
-            <div class="card">        
-            <%= t.tag.name.to_s.capitalize %> 
+            <div class="card">
+            <%= t.tag.name.to_s.capitalize %>
             </div>
-        <% end %>          
+        <% end %>
+        </div>
+    <% else %>
+        <div class="card">
+            no intrests noted
+        </div>
+    <% end %>
+           
     </div>
 </div>  
 </div>

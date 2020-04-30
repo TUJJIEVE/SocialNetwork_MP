@@ -2,9 +2,11 @@
 <div class="userProfileWindow">
 <h1> Your Intrests </h1>
 <% sintrests  = " "%>
-<% @intersts.each do |t| %>    
-        <% sintrests += t.tag.name %> 
-        <% sintrests += " , "%> 
+<% if @intersts != nil %>
+<% @intersts.each do |t| %> 
+    <% sintrests += t.tag.name %> 
+    <% sintrests += " , "%> 
+    <% end %>   
 <% end %>
 
 <%= form_with(as: "userIntersts", url: edit_user_intersts_request_path , html: { method: :put }) do |f| %>
