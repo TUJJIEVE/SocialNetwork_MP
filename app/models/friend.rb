@@ -11,4 +11,30 @@ class Friend < ApplicationRecord
         end
         return nil
     end
+
+    def Friend::Create(id1,id2,status)
+        newRequest = Friend.new
+        newRequest.sender_id = id1
+        newRequest.accepter_id = id2
+        newRequest.status = status
+        if newRequest.save 
+            puts "new request created succesfully.."
+            return newRequest        
+        else
+            puts "error creating new request"
+            puts newRequest.errors.full_messages
+            return nil
+        end
+    end
+
+    def statusMsg()
+        if self.status == 0 
+            return 'pending request'
+        elsif self.status == 1 
+            return 'accepted request'
+        else 
+            return 'not expected this'
+        end
+        return ''
+    end
 end

@@ -16,4 +16,13 @@ class User < ApplicationRecord
       @current_user_profile = UserProfile.Create(self.id)
     end    
   end
+
+  def User::exist(id)
+    user = User.find_by_id(id)
+    if user == nil
+      return false
+    else
+      return true
+    end
+  end  
 end

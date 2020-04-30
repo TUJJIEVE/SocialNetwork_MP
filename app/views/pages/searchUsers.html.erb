@@ -7,6 +7,9 @@
         <%= number %>.
         <%= u.full_name %>
         <%= link_to 'show Personal Information', show_user_profile_path(u.user_id) %>
+        <% if user_signed_in? %>
+            <%= link_to 'send Friend Request',send_request_path(params:{"id":u.user_id}) %>
+        <% end %>
         <% number+=1 %>
     <div>
 <% end %>
