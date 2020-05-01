@@ -1,26 +1,22 @@
 <% header "all Messages" %>
-
+<div class="displayWindow">
 <%= @messages.length %>
 
 <% @messages.each do |m| %>
 
     <div>
-        <%= m.user_id %> : <%= m.body %> 
+        <%= m.user.user_profile.full_name %> : <%= m.body %> 
     </div>
 
 <% end %>
 
-<%= form_for(:Message, url: create_new_message_path , html: { method: :put }) do |f| %>
-            
+<%= form_for(:Message, url: create_new_message_path , html: { method: :put }) do |f| %>            
     <%= hidden_field_tag 'id', @conversation.id %>
-
-    <div class="form-group">
-        <%= f.label :new_message %>
-        <%= f.text_field :body, class: 'form-control' %>
+    <div class="form-group">    
+        <%= f.text_field :body, class: 'form-control',placeholder: 'send new message'%>
     </div>  
-
-    <%= f.submit "Send", class: 'btn btn-primary' %>
-
+    <%= f.submit "Send", class: 'btn btn-secondary' %>
 <% end %>
 
+</div>
 

@@ -19,4 +19,13 @@ class PagesController < ApplicationController
         
         puts "========================="
     end
+
+    def unacceptedRequests        
+        if user_signed_in?
+            query = {:accepter_id => current_user.id , :status => 0}
+            Friend.where(query).length 
+        else 
+            redirect_to dont_do_mischievous_path      
+        end                    
+    end    
 end

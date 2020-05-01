@@ -32,6 +32,8 @@ class Friend < ApplicationRecord
             return 'pending request'
         elsif self.status == 1 
             return 'accepted request'
+        elseif self.status == 2
+            return 'rejected request'
         else 
             return 'not expected this'
         end

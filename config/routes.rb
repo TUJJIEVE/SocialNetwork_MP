@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   #friends
   get '/users/send_request/', to: 'friends#sendRequest' , as: :send_request
   get '/users/accept_request/', to: 'friends#acceptRequest' , as: :accept_request
+  get '/users/reject_request/', to: 'friends#rejectRequest' , as: :reject_request
+  get '/users/rejected_requests/', to: 'friends#rejectedRequests' , as: :rejected_requests
   get '/users/pending_requests/', to: 'friends#pendingRequests' , as: :pending_requests
   get '/users/accept_requests/', to: 'friends#acceptRequests' , as: :accept_requests
   get '/users/friends/' ,to: 'friends#all' , as: :all_friends

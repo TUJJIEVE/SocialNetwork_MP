@@ -1,5 +1,5 @@
 <% header "all Conversations" %>
-
+<div class="displayWindow">
 <%= @conversations.length %>
 
 <% @conversations.each do |x|%>
@@ -26,3 +26,4 @@
     <%= f.submit "Start a new conv with user", class: 'btn btn-primary' %>
 
 <% end %>
+</div>

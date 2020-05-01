@@ -15,6 +15,7 @@
             <% number+=1 %>
 
             <%= link_to 'accept Friend Request',accept_request_path(params:{"id":r.sender.id}) %>
+            <%= link_to 'reject Friend Request',reject_request_path(params:{"id":r.sender.id}) %>
         </div>
     <div>
 <% end %>
