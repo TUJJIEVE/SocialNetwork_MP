@@ -18,6 +18,9 @@
       <td><%= question.text %></td>
       <td><%= link_to 'Show', question_path(question) %></td>
       <td><%= link_to 'Edit', edit_question_path(question) %></td>
+      <td><%= link_to 'Destroy', question_path(question),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>

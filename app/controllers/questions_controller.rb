@@ -10,7 +10,12 @@ class QuestionsController < ApplicationController
     def edit
         @question = Question.find(params[:id])
     end
+    def destroy
+        @question = Question.find(params[:id])
+        @question.destroy
 
+        redirect_to questions_path
+    end
     def update
         @question = Question.find(params[:id])
         # date = params[:date]
