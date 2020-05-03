@@ -1,0 +1,18 @@
+
+<div class="userProfileWindow">
+<h1> Your Intrests </h1>
+<% sintrests  = " "%>
+<% if @intersts != nil %>
+<% @intersts.each do |t| %> 
+    <% sintrests += t.tag.name %> 
+    <% sintrests += " , "%> 
+    <% end %>   
+<% end %>
+
+<%= form_with(as: "userIntersts", url: edit_user_intersts_request_path , html: { method: :put }) do |f| %>
+    <div class="form-group">    
+    <%= f.text_field :tags, class: 'form-control' , value: sintrests %>
+    </div>
+    <%= f.submit "Update", class: 'btn btn-primary' %>
+<% end %>
+</div>

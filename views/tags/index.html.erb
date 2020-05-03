@@ -1,0 +1,28 @@
+<% header "all Tags" %>
+
+<%= @tags.length %>
+
+<% @tags.each do |t| %>
+
+    <div>
+        <%= t.name %> : <%= t.user_id %> 
+    </div>
+
+<% end %>
+
+<% if current_user != nil %>
+
+<h1> create new tag </h1>
+
+<%= form_for(:Tag, url: create_new_tag_path , html: { method: :put }) do |f| %>
+                
+    <div class="form-group">
+        <%= f.label :tagname %>
+        <%= f.text_field :name, class: 'form-control' %>
+    </div>  
+
+    <%= f.submit "create", class: 'btn btn-primary' %>
+
+<% end %>
+
+<% end %>
