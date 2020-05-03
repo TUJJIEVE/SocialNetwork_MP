@@ -20,7 +20,7 @@ class QuestionsController < ApplicationController
         # puts edited_at  
         if @question.update(params.require(:question).permit(:title,:text))
             redirect_to @question
-        else
+        else 
             render 'edit'
         end
     end
