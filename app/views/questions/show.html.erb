@@ -18,5 +18,14 @@
     <%= @question.updated_at %>
 </p>
 
+<h2>Answers</h2>
+<%= render @question.answers %>
+
+
+
+
+<h2>Add a answer:</h2>
+<%= render 'answers/form' %>
+
 <%= link_to 'Edit' , edit_question_path %><br>
 <%= link_to 'Back' , questions_path %>
