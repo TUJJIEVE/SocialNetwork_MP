@@ -1,0 +1,22 @@
+<p>
+  <strong>Title:</strong>
+  <%= @question.title %>
+</p>
+ 
+<p>
+  <strong>Text:</strong>
+  <%= @question.text %>
+</p>
+
+<p>
+    <strong>Posted_ON:</strong>
+    <%= @question.posted_on %>
+</p>
+
+<p>
+    <strong>Last_Edited:</strong>
+    <%= @question.updated_at %>
+</p>
+
+<%= link_to 'Edit' , edit_question_path %><br>
+<%= link_to 'Back' , questions_path %>
