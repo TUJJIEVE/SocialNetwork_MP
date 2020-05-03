@@ -1,0 +1,16 @@
+<div class="displayWindow">
+<h1>Friends : </h1>
+<h4>Number of Results: <%= @friends.length %> </h4>
+<% number = 1 %>
+<% @friends.each do |u| %>
+    <div class="card">
+        <%= number %>.
+        <% if u.sender.id != current_user.id %>
+            <%= u.sender.user_profile.full_name %>
+        <% else %>
+            <%= u.accepter.user_profile.full_name %>
+        <% end %>
+        <% number+=1 %>
+    <div>
+<% end %>
+</div>

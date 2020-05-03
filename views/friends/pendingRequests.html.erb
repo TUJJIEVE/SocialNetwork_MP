@@ -1,0 +1,19 @@
+<div class="displayWindow">
+<h1>pendingRequests : </h1>
+<h4>Number of Results: <%= @pendingRequests.length %> </h4>
+<% number = 1 %>
+<% @pendingRequests.each do |r| %>
+    <div class="card">    
+        <div class="row">
+            <%= number %>.
+            <%= r.accepter.uname %>  
+
+            <h4> full name : <%= r.accepter.user_profile.full_name %>      </h4>
+            
+            <%= r.accepter.id %>  
+            <%= r.created_at %>        
+            <% number+=1 %>
+        </div>
+    <div>
+<% end %>
+</div>
