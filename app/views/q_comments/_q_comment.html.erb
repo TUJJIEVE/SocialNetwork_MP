@@ -1,0 +1,27 @@
+
+<p>
+  <strong>commented_By:</strong>
+  <%= q_comment.commenter %>
+</p>
+ 
+<p>
+  <strong>q_comment:</strong>
+  <%= q_comment.body %>
+</p>
+
+<p>
+    <strong>commented_On:</strong>
+    <%= q_comment.created_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
+</p>
+<p>
+    <strong>Last_Edited_on:</strong>
+    <%= q_comment.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
+
+</p>
+
+    <%= link_to 'Destroy comments', [q_comment.question, q_comment],
+               method: :delete,
+               data: { confirm: 'Are you sure?' } %>
+
+
+</p>

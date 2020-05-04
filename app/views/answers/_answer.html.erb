@@ -23,3 +23,11 @@
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
 </p>
+
+<h2>Comments</h2>
+<% @question = answer.question %>
+<% @answer = answer %>
+<%= render @answer.comments %>
+
+<h2>Add a comment:</h2>
+<%= render 'comments/aform' %>
