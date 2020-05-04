@@ -1,0 +1,35 @@
+<h1>Edit answer</h1>
+ 
+<%= form_for ([@answer.question,@answer]) do |form| %>
+ 
+  <% if @answer.errors.any? %>
+    <div id="error_explanation">
+      <h2>  
+        <%= pluralize(@answer.errors.count, "error") %> prohibited
+        this answer from being saved:
+      </h2>
+      <ul>
+        <% @answer.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <p>
+    <%= form.label :posted_by %><br>
+    <%= form.text_field :posted_by %>
+  </p>
+ 
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+ 
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>
+ 
+<%= link_to 'Back', question_answers_path %>
