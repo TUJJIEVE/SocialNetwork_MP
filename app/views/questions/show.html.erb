@@ -10,22 +10,22 @@
 
 <p>
     <strong>Posted_ON:</strong>
-    <%= @question.posted_on %>
+    <%= @question.posted_on.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
 </p>
 
 <p>
     <strong>Last_Edited:</strong>
-    <%= @question.updated_at %>
+    <%= @question.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
 </p>
+
+<%= link_to 'Edit' , edit_question_path %><br>
+
 
 <h2>Answers</h2>
 <%= render @question.answers %>
 
-
-
-
 <h2>Add a answer:</h2>
 <%= render 'answers/form' %>
 
-<%= link_to 'Edit' , edit_question_path %><br>
+
 <%= link_to 'Back' , questions_path %>

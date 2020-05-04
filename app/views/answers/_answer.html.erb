@@ -11,11 +11,13 @@
 
 <p>
     <strong>Answered_On:</strong>
-    <%= answer.created_at %>
+    <%= answer.created_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
 </p>
-
 <p>
+    <strong>Last_Edited_on:</strong>
+    <%= answer.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
 
+</p>
     <%= link_to 'Edit Answer', edit_question_answer_path(answer.question,answer) %><br>
     <%= link_to 'Destroy Answer', [answer.question, answer],
                method: :delete,
