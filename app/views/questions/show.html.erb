@@ -20,6 +20,12 @@
 
 <%= link_to 'Edit' , edit_question_path %><br>
 
+<h2>Comments on Questions</h2>
+<%= render @question.q_comments %>
+
+<h2> Add Comments to question </h2>
+<%= render 'q_comments/form' %>
+
 
 <h2>Answers</h2>
 <%= render @question.answers %>
