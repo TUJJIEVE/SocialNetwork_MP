@@ -8,5 +8,5 @@ class Tag < ApplicationRecord
             return tags[0].id
         end       
         return nil
-    end
+    end        
 end
