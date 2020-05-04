@@ -9,15 +9,16 @@ class UserProfileTest < ActiveSupport::TestCase
 
   test "verifyThatCreateReturnsNilWhenUserIsNotPresent" do 
     userId = 0
-    user_profile = UserProfile.Create(userId)    
+    user_profile = UserProfile.Create("dummy_uname",userId)    
     assert (user_profile == nil)
   end
 
   test "verifyThatCreateReturnsUserProfileWhenUserIsPresent" do 
     userId = 1 #id of def_user defined in setup
-    user_profile = UserProfile.Create(userId)    
+    user_profile = UserProfile.Create("dummy_uname",userId)    
     assert (user_profile != nil)
     assert (user_profile.user_id == userId)
+    assert (user_profile.uname == "dummy_uname")
   end
 
   test "verifyThatFindReturnsNilWhenUserIsNotPresent" do

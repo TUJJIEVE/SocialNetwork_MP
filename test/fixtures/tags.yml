@@ -4,8 +4,10 @@ one:
   name: MyString
   popularity: 1.5
   user_id: 1
+  id: 1
 
 two:
   name: MyString
   popularity: 1.5
   user_id: 1
+  id: 2
