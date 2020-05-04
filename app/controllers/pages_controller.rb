@@ -28,4 +28,8 @@ class PagesController < ApplicationController
             redirect_to dont_do_mischievous_path      
         end                    
     end    
+
+    def getNotifications
+        
+    end
 end

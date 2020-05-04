@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :answers
   end
   get '/users/search/' , to: 'pages#searchUsers' , as: :search_users  
+  get '/users/notifications/' , to: 'pages#getNotifications' , as: :notifications
   
   #friends
   get '/users/send_request/', to: 'friends#sendRequest' , as: :send_request
