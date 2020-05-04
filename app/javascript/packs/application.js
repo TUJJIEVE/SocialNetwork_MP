@@ -17,3 +17,15 @@ require("channels")
 // const imagePath = (name) => images(name, true)
 
 import "bootstrap"
+
+
+window.showAndHide = function(id){
+    var x = document.getElementById(id);    
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+}
+
+

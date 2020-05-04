@@ -1,13 +1,10 @@
-<% header "all Messages" %>
 <div class="displayWindow">
-<%= @messages.length %>
-
+<h1> Conversation between <%= @conversation.sender.uname %> and <% @conversation.reciver.uname %>  </h1>
 <% @messages.each do |m| %>
 
-    <div>
+    <div class="card">
         <%= m.user.user_profile.full_name %> : <%= m.body %> 
     </div>
-
 <% end %>
 
 <%= form_for(:Message, url: create_new_message_path , html: { method: :put }) do |f| %>            

@@ -1,29 +1,41 @@
-<% header "all Conversations" %>
 <div class="displayWindow">
+<h1> Conversations </h1>
+<h5> number of conversations 
 <%= @conversations.length %>
+</h5>
 
+<% number = 1 %>
 <% @conversations.each do |x|%>
-    <div>
-        <% link = x.sender_id.to_s << " and " << x.reciver_id.to_s %>
-        <%= link_to link , conversation_messages_path(x.as_json) %>        
+    <div class="card">       
+    <div class ="row">  
+        <div class="col">
+        <%= number.to_s %> . conversation between 
+        <%= link_to x.sender.uname.to_s , show_user_profile_path(x.sender_id) %>
+        and 
+        <%= link_to x.reciver.uname.to_s , show_user_profile_path(x.reciver_id) %>
+        </div>
+        <div class="col">
+        <%= link_to 'open conversation' , conversation_messages_path(x.as_json) %>      
+        </div>
+    </div>  
     </div>
+    <% number+=1 %>
 <% end %>
+<div>
 
 
-<h4> to create a new conversation enter user id below </h4>
-<%= form_for(:Conversation, url: conversation_path , html: { method: :put }) do |f| %>
-                
-    <div class="form-group">
-        <%= f.label :reciver_id %>
-        <%= f.text_field :reciver_id, class: 'form-control' %>
-    </div>
-    
-    <div class="form-group">
-        <%= f.label :sender_id %>
-        <%= f.text_field :sender_id, class: 'form-control' , value: @current_user_id%>
-    </div>
+<div class="displayWindow">
+<button onclick="showAndHide('createNewConvForm')" class="btn btn-secondary">start a new conversation</button>
+<div id = "createNewConvForm" , style="display:None">
+<h6>* user id can be known by looking at user profiles page </h6>
 
+<%= form_for(:Conversation, url: conversation_path , html: { method: :put }) do |f| %>                
+    <div class="form-group">        
+        <%= f.text_field :reciver_id, class: 'form-control', :required => 'required' , placeholder: 'enter user id of the user whom you want to send messages' %>
+    </div>            
+    <%= f.hidden_field :sender_id, class: 'form-control' , value: @current_user_id%>    
     <%= f.submit "Start a new conv with user", class: 'btn btn-primary' %>
-
 <% end %>
+
+</div>
 </div>

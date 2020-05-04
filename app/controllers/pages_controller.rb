@@ -13,7 +13,7 @@ class PagesController < ApplicationController
         if params["keyword"].length > 0
             query = params["keyword"]
         end
-        @users = UserProfile.where("full_name LIKE '%"+query+"%'")
+        @users = UserProfile.where("uname LIKE '%"+query+"%'")
         
         puts @users.length
         
