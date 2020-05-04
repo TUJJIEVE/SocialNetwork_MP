@@ -67,8 +67,9 @@ class UserProfilesController < ApplicationController
             @user_profile.dob = params[:new_params][:dob]
             @user_profile.college_id = params[:new_params][:college_id]
             @user_profile.country = params[:new_params][:country]
-            @user_profile.profile_picture.attach(params[:new_params][:profile_picture])            
-            puts "=============================== hola ================="
+            if params[:new_params][:profile_picture] != nil 
+                @user_profile.profile_picture.attach(params[:new_params][:profile_picture])        
+            end
 
             if @user_profile.save 
                 puts 'saved successfully.............'

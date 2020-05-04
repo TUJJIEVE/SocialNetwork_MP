@@ -13,7 +13,7 @@ class User < ApplicationRecord
   def init_user_profile    
     @current_user_profile = UserProfile.Find(self.id)
     if @current_user_profile == nil 
-      @current_user_profile = UserProfile.Create(self.id)
+      @current_user_profile = UserProfile.Create(self.uname,self.id)
     end    
   end
 

@@ -3,9 +3,10 @@ class UserProfile < ApplicationRecord
 
     has_one_attached :profile_picture  , :dependent => :purge_later
  
-    def UserProfile::Create(user_id)                
+    def UserProfile::Create(uname,user_id)                
         user_profile = UserProfile.new
         user_profile.user_id = user_id
+        user_profile.uname = uname
         if user_profile.save 
             puts "creating user profile"
         else
