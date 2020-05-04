@@ -3,7 +3,10 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+
+
 require("@rails/ujs").start()
+
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
@@ -28,4 +31,21 @@ window.showAndHide = function(id){
     }
 }
 
+window.getNotifications = function(){
+    console.log("calling getNotifications");    
+    jQuery.ajax({
+        url: "/users/notifications/",
+        type: "get",
+        success: function(data) { 
+            console.log(data.friendRequests);
+            document.getElementById("notifications").innerHTML = JSON.stringify(data);
+        }
+    });
+}
 
+$(document).ready(function() {    
+    window.setInterval(function(){
+        getNotifications()
+      }, 1000);
+    console.log("testing");
+});

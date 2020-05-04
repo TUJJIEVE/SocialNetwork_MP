@@ -29,7 +29,18 @@ class PagesController < ApplicationController
         end                    
     end    
 
-    def getNotifications
-        
+    def getNotifications        
+        results = {}
+        results["friendRequests"] = 0
+        if user_signed_in?                    
+            results["friendRequests"] += getFriendRequests
+            puts results            
+        end            
+        render json: results        
+    end
+
+    def getFriendRequests
+        query = {:accepter_id => current_user.id , :status => 0}
+        return Friend.where(query).length    
     end
 end
