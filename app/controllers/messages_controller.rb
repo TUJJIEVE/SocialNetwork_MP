@@ -24,6 +24,17 @@ class MessagesController < ApplicationController
         end
     end
 
+    def fetchNewMessages
+        puts params
+        lastmsgid = params["lastmsgid"]
+        msgs = @conversation.messages.where("id > ?", lastmsgid)        
+        results = {}
+        if msgs.length > 0 
+            results["messages"] = msgs
+        end
+        render json: results
+    end
+
     private
     def findConversation
         puts "entered in find conversation============================"

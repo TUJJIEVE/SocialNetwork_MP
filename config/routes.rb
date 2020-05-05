@@ -39,7 +39,8 @@ Rails.application.routes.draw do
   
   #messages
   get '/messages/' , to: 'messages#index' , as: :conversation_messages
-  put '/messages/create' , to: 'messages#create' , as: :create_new_message
+  put '/messages/create/' , to: 'messages#create' , as: :create_new_message
+  get '/messages/fetchlatest/:id/:lastmsgid' , to: 'messages#fetchNewMessages' , as: :fetch_new_messages
 
   #tags
   get '/tags/' , to: 'tags#index' , as: :all_tags

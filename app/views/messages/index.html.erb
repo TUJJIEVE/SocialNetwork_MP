@@ -1,12 +1,28 @@
 <div class="displayWindow">
-<h1> Conversation between <%= @conversation.sender.uname %> and <% @conversation.reciver.uname %>  </h1>
-<% @messages.each do |m| %>
+<span id="conversationId" class="d-none"><%= @conversation.id %></span>
+<% if %>
+<span id="lastMsgId" class="d-none"><%= @messages.last.id %></span>
+<% else %>
+<span id="lastMsgTime" class="d-none"><%=0%></span>
+<% end %>
+<span id="currentUserId" class="d-none"><%= current_user.id %></span>
+<span id="currentUserUname" class="d-none"><%= current_user.uname %></span>
+<% if current_user.id == @conversation.sender.id %>
+    <span id="otherUserId" class="d-none"><%= @conversation.reciver.id %></span>
+    <span id="otherUserUname" class="d-none"><%= @conversation.reciver.uname %></span>
+<% else %>
+    <span id="otherUserId" class="d-none"><%= @conversation.sender.id %></span>
+    <span id="otherUserUname" class="d-none"><%= @conversation.sender.uname %></span>
+<% end %>
 
+<h1> Conversation between <%= @conversation.sender.uname %> and <%= @conversation.reciver.uname %>  </h1>
+<div id="messagebox">
+<% @messages.each do |m| %>
     <div class="card">
         <%= m.user.user_profile.full_name %> : <%= m.body %> 
     </div>
 <% end %>
-
+</div>
 <%= form_for(:Message, url: create_new_message_path , html: { method: :put }) do |f| %>            
     <%= hidden_field_tag 'id', @conversation.id %>
     <div class="form-group">    
