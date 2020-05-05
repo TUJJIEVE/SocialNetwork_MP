@@ -3,4 +3,6 @@ class Question < ApplicationRecord
     validates :title, presence: true, length: {minimum: 5}
     has_many :answers, dependent: :destroy
     has_many :q_comments, dependent: :destroy
+    has_many :q_votes, dependent: :destroy
+    
 end

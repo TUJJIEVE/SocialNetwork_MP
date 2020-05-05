@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'pages#index'
   resources :questions do
+    member do
+      post 'upvote'
+      post 'downvote'
+    end
     resources :q_comments
     resources :answers do
       resources :comments

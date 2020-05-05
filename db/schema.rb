@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_175906) do
+ActiveRecord::Schema.define(version: 2020_05_05_135719) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -98,6 +98,16 @@ ActiveRecord::Schema.define(version: 2020_05_04_175906) do
     t.index ["question_id"], name: "index_q_comments_on_question_id"
   end
 
+  create_table "q_votes", force: :cascade do |t|
+    t.integer "vote_id"
+    t.integer "vote_type"
+    t.string "voted_by"
+    t.integer "question_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_q_votes_on_question_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string "question_id"
     t.string "title"
@@ -171,6 +181,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_175906) do
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
   add_foreign_key "q_comments", "questions"
+  add_foreign_key "q_votes", "questions"
   add_foreign_key "tags", "users"
   add_foreign_key "user_intersts", "tags"
   add_foreign_key "user_intersts", "users"
