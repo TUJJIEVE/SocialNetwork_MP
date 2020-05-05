@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_142907) do
+ActiveRecord::Schema.define(version: 2020_05_05_180647) do
 
   create_table "a_votes", force: :cascade do |t|
     t.integer "vote_id"
@@ -150,7 +150,7 @@ ActiveRecord::Schema.define(version: 2020_05_05_142907) do
   create_table "user_profiles", force: :cascade do |t|
     t.string "uname"
     t.string "full_name"
-    t.time "dob"
+    t.datetime "dob"
     t.string "college_id"
     t.string "country"
     t.integer "points"

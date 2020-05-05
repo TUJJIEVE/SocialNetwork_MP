@@ -63,16 +63,22 @@ class UserProfilesController < ApplicationController
         if user_signed_in? 
             @user_profile = UserProfile.where({:user_id => current_user.id}).last        
             puts params[:new_params]
-            @user_profile.full_name = params[:new_params]["full_name"]
-            @user_profile.dob = params[:new_params][:dob]
+            @user_profile.full_name = params[:new_params]["full_name"]            
+            @user_profile.dob = DateTime.parse(params[:new_params][:dob])
             @user_profile.college_id = params[:new_params][:college_id]
             @user_profile.country = params[:new_params][:country]
             if params[:new_params][:profile_picture] != nil 
                 @user_profile.profile_picture.attach(params[:new_params][:profile_picture])        
             end
 
+            #intializing points
+            if @user_profile.points == nil 
+                @user_profile.points = 0       
+            end
+
+            #save
             if @user_profile.save 
-                puts 'saved successfully.............'
+                puts 'saved successfully.............'                
             else
                 puts 'failed miserablly............'
             end
