@@ -1,6 +1,15 @@
 <div class="displayWindow">
 <h1>Requests To be Accepted : </h1>
 <h4>Number of Results: <%= @acceptingRequests.length %> </h4>
+<% if @acceptingRequests.length == 0 %>
+<% redirecttopage = '/' %>
+<script>
+    var timer = setTimeout(function() {
+        window.location = "<%= redirecttopage %>"
+    }, 3000);
+</script>
+<h3> as there are no new requests , redirecting to <%= redirecttopage %> </h3>
+<% end %> 
 <% number = 1 %>
 <% @acceptingRequests.each do |r| %>
     <div class="card">    

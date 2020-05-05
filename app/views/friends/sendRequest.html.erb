@@ -1,3 +1,10 @@
+<% redirecttopage = '/' %>
+<script>
+    var timer = setTimeout(function() {
+        window.location = "<%= redirecttopage %>"
+    }, 3000);
+</script>
 <div class="displayWindow">
 <h1> <%= @msg %> </h1>
+<h3> redirecting to <%= redirecttopage %> </h3>
 </div>

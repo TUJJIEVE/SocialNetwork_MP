@@ -11,9 +11,11 @@ class FriendsController < ApplicationController
                     @alreadyExistingSendByMe = Friend.FindStatus(id1,id2)
                     @alreadyExistingSendByHim = Friend.FindStatus(id2,id1)
                     
-                    if @alreadyExistingSendByMe != nil
-                        if @alreadyExistingSendByme.status == 2 
-                            @msg = "the other person REJECTED your request..plese dont bother him"
+                    if @alreadyExistingSendByMe != nil                             
+                        if @alreadyExistingSendByMe.status == 2 
+                            @msg = "the other person REJECTED your request..plese dont bother him"  
+                        elsif @alreadyExistingSendByMe.status == 1
+                            @msg = "already accepted your friend request"                      
                         else 
                             @msg = "Please Have Paitence , let the other user accept."
                         end
