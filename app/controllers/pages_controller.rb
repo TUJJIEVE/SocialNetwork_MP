@@ -43,4 +43,7 @@ class PagesController < ApplicationController
         query = {:accepter_id => current_user.id , :status => 0}
         return Friend.where(query).length    
     end
+
+    def notFound
+    end
 end

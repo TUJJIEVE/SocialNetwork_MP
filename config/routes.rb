@@ -48,4 +48,8 @@ Rails.application.routes.draw do
 
   #misselienous
   get '/mischievous/', to: 'pages#mischievous' , as: :dont_do_mischievous
+
+  #unmatched_route
+  get '*unmatched_route', to: 'pages#notFound' , as: :page_not_found
+
 end
