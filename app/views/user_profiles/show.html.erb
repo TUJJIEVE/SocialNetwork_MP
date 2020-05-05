@@ -46,6 +46,7 @@
         <label>Profile Picture:</label>
         <div>
             <%if @user_profile.profile_picture.attached? %>
+                <h1> attached Picture </h1>
                 <%= image_tag(@user_profile.profile_picture,:class=>"displayProfilePictureInEdit")%>
             <% else %>
                 <%= image_tag(asset_path("doctor.jpg"),:class=>"displayProfilePictureInEdit") %>            

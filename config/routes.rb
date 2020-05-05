@@ -55,9 +55,5 @@ Rails.application.routes.draw do
   put '/tags/create' , tp: 'tags#create' , as: :create_new_tag
 
   #misselienous
-  get '/mischievous/', to: 'pages#mischievous' , as: :dont_do_mischievous
-
-  #unmatched_route
-  get '*unmatched_route', to: 'pages#notFound' , as: :page_not_found
-
+  get '/mischievous/', to: 'pages#mischievous' , as: :dont_do_mischievous  
 end

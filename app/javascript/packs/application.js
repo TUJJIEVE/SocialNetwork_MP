@@ -100,9 +100,9 @@ $(document).ready(function() {
     }
     //---------
     if(userLoggedin()){
-        window.setInterval(function(){
-            getNotifications()
-          }, timeForNotifications);
+        // window.setInterval(function(){
+        //     getNotifications()
+        //   }, timeForNotifications);
     }   
     console.log("loaded application js");       
 });
