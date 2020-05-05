@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     end
     resources :q_comments
     resources :answers do
+      member do
+        post 'upvote'
+        post 'downvote'
+      end
       resources :comments
     end
   end

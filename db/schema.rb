@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_135719) do
+ActiveRecord::Schema.define(version: 2020_05_05_142907) do
+
+  create_table "a_votes", force: :cascade do |t|
+    t.integer "vote_id"
+    t.integer "vote_type"
+    t.string "voted_by"
+    t.integer "answer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["answer_id"], name: "index_a_votes_on_answer_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -175,6 +185,7 @@ ActiveRecord::Schema.define(version: 2020_05_05_135719) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "a_votes", "answers"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "questions"
   add_foreign_key "comments", "answers"

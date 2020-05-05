@@ -18,10 +18,24 @@
     <%= answer.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
 
 </p>
+
+    <%= button_to '+1', upvote_question_answer_path(answer.question,answer), method: :post%></td>
+    <%= button_to '-1', downvote_question_answer_path(answer.question,answer), method: :post %></td>
     <%= link_to 'Edit Answer', edit_question_answer_path(answer.question,answer) %><br>
     <%= link_to 'Destroy Answer', [answer.question, answer],
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
+</p>
+<% @total_upvotes = AVote.total_up_votes(answer.id)%>
+<p> 
+  <strong> Up votes:</strong>
+  <%= @total_upvotes %>
+</p>
+
+<% @total_dvotes = AVote.total_down_votes(answer.id)%>
+<p> 
+  <strong> Down votes:</strong>
+  <%= @total_dvotes %>
 </p>
 
 <h2>Comments</h2>
