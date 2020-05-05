@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     end
   end
 
-  
+  get '/users/question_search/', to: 'pages#searchQuestions', as: :search_questions
   get '/users/search/' , to: 'pages#searchUsers' , as: :search_users  
   get '/users/notifications/' , to: 'pages#getNotifications' , as: :notifications
   

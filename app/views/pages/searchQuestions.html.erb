@@ -1,0 +1,14 @@
+<div class="displayWindow">
+<h1>Results : </h1>
+<h4>Number of Results: <%= @questions.length %> </h4>
+<% number = 1 %>
+<% @questions.each do |question| %>
+    <div class="card">
+        <%= number %>.
+        <%= question.title %>
+        
+        <%= link_to 'SHOW', question_path(question.id) %>
+        <% number+=1 %>
+    <div>
+<% end %>
+</div>

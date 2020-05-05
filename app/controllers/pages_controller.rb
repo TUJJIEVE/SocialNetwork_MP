@@ -20,6 +20,15 @@ class PagesController < ApplicationController
         puts "========================="
     end
 
+    def searchQuestions
+        query = " "
+        if params["keyword"].length >0
+            query = params["keyword"]
+        end
+        @questions = Question.where("title LIKE '%"+query+"%'")
+        puts @questions.length
+    end
+    
     def unacceptedRequests        
         if user_signed_in?
             query = {:accepter_id => current_user.id , :status => 0}
