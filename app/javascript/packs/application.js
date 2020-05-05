@@ -38,7 +38,7 @@ window.getNotifications = function(){
         type: "get",
         success: function(data) { 
             console.log(data.friendRequests);
-            document.getElementById("notifications").innerHTML = JSON.stringify(data);
+            document.getElementById("numberofnewFriendRequests").innerHTML = JSON.stringify(data.friendRequests);
         }
     });
 }

@@ -30,14 +30,21 @@
       <div id="userSearch">
         <%= form_with(as: "userSearch", url: search_users_path , html: { method: :get },local: true) do |f| %>
           <div class="form-group">    
-            <%= f.text_field :keyword, class: 'form-control' , placeholder: "search User with fullname" %>
+            <%= f.text_field :keyword, class: 'form-control' , placeholder: "search User with uname" %>
           </div>        
           <%= f.submit "searchUsers", class: 'btn btn-secondary' %>          
         <% end %>
       </div>      
-      <div id="notifications">
 
+      <div id="notifications">
+      <% if user_signed_in? %>
+        <div id="newFriendRequests">                        
+            <h6> <%= link_to 'new friend requests:', accept_requests_path %> <span id="numberofnewFriendRequests"> 0 </span> </h6>
+        </div>        
+        <div id="points"> points : <%= current_user.user_profile.points %> </div>  
+      <% end %>          
       </div>
+
       <div id="navbar">
         <ul class="nav navbar-nav">
           <li><%= link_to 'Home', root_path %></li>
@@ -84,7 +91,7 @@
     
 
   <%= yield %>
-  
+
   </div>
   </body>
 </html>
