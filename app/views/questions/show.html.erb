@@ -17,7 +17,22 @@
     <strong>Last_Edited:</strong>
     <%= @question.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
 </p>
+<% @total_upvotes = QVote.total_up_votes(@question.id)%>
+<p> 
+  <strong> Up votes:</strong>
+  <%= @total_upvotes %>
+</p>
 
+<% @total_dvotes = QVote.total_down_votes(@question.id)%>
+<p> 
+  <strong> Down votes:</strong>
+  <%= @total_dvotes %>
+</p>
+
+
+
+<%= button_to '+1', upvote_question_path, method: :post %>
+<%= button_to '-1', downvote_question_path, method: :post %>
 <%= link_to 'Edit' , edit_question_path %><br>
 
 <h2>Comments on Questions</h2>

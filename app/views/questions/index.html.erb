@@ -13,9 +13,17 @@
   </tr>
  
   <% @questions.each do |question| %>
+    <% @upvotes = QVote.total_up_votes(question.id) %>
+    <% @downvotes = QVote.total_down_votes(question.id) %>
     <tr>
       <td><%= question.title %></td>
       <td><%= question.text %></td>
+      <td>UPVOTES:</td>
+      <td><%= @upvotes %></td>
+      <td>DOWNVOTES:</td>
+      <td><%= @downvotes %></td>     
+      <td><%= button_to '+1', upvote_question_path(question), method: :post%></td>
+      <td><%= button_to '-1', downvote_question_path(question), method: :post %></td>
       <td><%= link_to 'Show', question_path(question) %></td>
       <td><%= link_to 'Edit', edit_question_path(question) %></td>
       <td><%= link_to 'Destroy', question_path(question),
