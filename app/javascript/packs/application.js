@@ -71,23 +71,40 @@ window.fetchNewMessages = function(){
     });
 }
 
+window.userLoggedin = function(){
+    if(currentuser == undefined){
+        return false;
+    }else{
+        return true;
+    }
+}
+
 //constants
 var timeForNotifications = 3500;
 var timeForGetMessages = 2000;
 
-
-
 //global vars
 var recFetchMsg = undefined; 
 var lastmsgid = 0;
+var currentuser = undefined;
+var currentuserprofile = undefined;
 
 
 // ready function
 $(document).ready(function() {    
-    window.setInterval(function(){
-        getNotifications()
-      }, timeForNotifications);
-    console.log("loaded application js");   
+
+    //initializations
+    if (document.getElementById("currentuser").innerHTML != "null") {
+        currentuser = JSON.parse(document.getElementById("currentuser").innerHTML);
+        currentuserprofile = JSON.parse(document.getElementById("currentuserprofile").innerHTML);
+    }
+    //---------
+    if(userLoggedin()){
+        window.setInterval(function(){
+            getNotifications()
+          }, timeForNotifications);
+    }   
+    console.log("loaded application js");       
 });
 
 //on turbo linkschange function

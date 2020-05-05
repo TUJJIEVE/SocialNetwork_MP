@@ -1,14 +1,12 @@
-<% content_for :top_content do %>    
-      <div class="container">
-        <h1>Welcome!</h1>
-        <% if current_user == nil %>
-          <p>Register to get started.</p>
-          <p>
-            <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
-          </p>
-        <% end %>      
-      </div>    
-  <% end %>
+<div class="container">
+  <h1>Welcome!</h1>
+  <% if current_user == nil %>
+    <p>Register to get started.</p>
+    <p>
+      <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
+    </p>
+  <% end %>      
+</div>    
 
 
   
