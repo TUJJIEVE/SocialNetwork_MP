@@ -18,8 +18,13 @@
        
         <div class="form-group">
         <%= select_tag 'tag_ids', options_from_collection_for_select(@tags,"id","name") , :multiple => true, class: 'form-control'%>
-        </div>
+        </div>        
         <%= f.submit "Update", class: 'btn btn-secondary' %>
     <% end %>
+    </div>
+    <div>
+    <i>
+        <%= link_to 'to create new tags', all_tags_path %>
+    </i>
     </div>
 </div>

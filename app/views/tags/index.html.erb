@@ -1,13 +1,11 @@
-<% header "all Tags" %>
+<div class="displayWindow">
 
-<%= @tags.length %>
+<h6> Total tags : <%= @tags.length %> </h6>
 
 <% @tags.each do |t| %>
-
-    <div>
-        <%= t.name %> : <%= t.user_id %> 
+    <div class ="card">
+        <span> "<%= t.name %>"  created by user with id <%= t.user_id %></span>
     </div>
-
 <% end %>
 
 <% if current_user != nil %>
@@ -26,3 +24,4 @@
 <% end %>
 
 <% end %>
+</div>

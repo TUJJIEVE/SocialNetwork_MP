@@ -37,7 +37,9 @@
               </li>
               <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" href="" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Notifications</a>
-                <div class="dropdown-menu" aria-labelledby="dropdown01" id="notifications" \>
+                <div class="dropdown-menu" aria-labelledby="dropdown01" id="notifications">
+                  <%= link_to raw('new friend requests: <span id="numberofnewFriendRequests"> 0 </span>'), accept_requests_path , class: "dropdown-item"%>
+                </div>
               </li>
               <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" href="" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.uname %></a>
@@ -59,7 +61,7 @@
           </ul>
 
           <!-- Need to set the url for this form -->
-          <%= form_with(as: "postSearch", url: "#", html: {method: :get}, local: true) do |f| %>
+          <%= form_with(as: "postSearch", url: search_questions_path, html: {method: :get}, local: true) do |f| %>
             <%= f.text_field :keyword, class: "form-control", placeholder: "search post" %>
             <%= f.submit "search posts", class: "btn btn-secondary" %>
           <% end %>
