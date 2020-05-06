@@ -10,4 +10,25 @@ user_one:
   country: "dummpyCountry"
   points: 0
   user_id: 1
+
+user_two: 
+  id: 2
+  uname: "dummyUser2"
+  full_name: "dummyFullName2"
+  dob: <%= Time.now %>
+  college_id: "dummyCollegeId2"
+  country: "dummpyCountry"
+  points: 0
+  user_id: 2
+
+
+user_three: 
+  id: 3
+  uname: "dummyUser3"
+  full_name: "dummyFullName3"
+  dob: <%= Time.now %>
+  college_id: "dummyCollegeId2"
+  country: "dummpyCountry"
+  points: 0
+  user_id: 3
   
