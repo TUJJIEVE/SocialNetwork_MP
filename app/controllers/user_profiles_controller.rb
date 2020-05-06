@@ -9,6 +9,10 @@ class UserProfilesController < ApplicationController
             id = params["id"].to_i
         end                
         @user_profile = UserProfile.where({:user_id => id}).last
+        if @user_profile == nil 
+            flash[:error] = "no such user exist"
+            redirect_to '/'
+        end
         @intersts = UserInterst.Find_by_User(current_user.id)
     end       
 
@@ -91,23 +95,4 @@ class UserProfilesController < ApplicationController
             flash[:error] = "what is this...." 
         end
     end
-
-    def new 
-        @new_user_profile = UserProfile.build_user_profile
-        puts "saved hurrey....\n\nreached some where\n\n....."
-    end
-    
-    # def create
-    #     @current_user_profile = UserProfile.new(profile_params)
-    #     @current_user_profile.id = current_user.id    
-    #     @current_user_profile.user_id = current_user.id    
-    #     if @current_user_profile.save
-    #         flash[:success] = "Profile saved"
-    #         puts "saved hurrey....\n\nadfasdfadsf\n\n....."
-    #     else 
-    #         flash[:error] = "Profile not saved"
-    #         puts "craped up......\n\nadfasdfadsf\n\n......."
-    #     end        
-    #     respond_with(@current_user_profile)
-    # end
 end

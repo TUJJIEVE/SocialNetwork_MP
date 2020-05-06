@@ -48,11 +48,12 @@ class PagesController < ApplicationController
         render json: results        
     end
 
+    def notFound
+    end
+
+    private 
     def getFriendRequests
         query = {:accepter_id => current_user.id , :status => 0}
         return Friend.where(query).length    
-    end
-
-    def notFound
     end
 end

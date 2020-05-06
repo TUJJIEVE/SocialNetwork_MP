@@ -3,8 +3,12 @@ class MessagesController < ApplicationController
     
     def index
         puts "=========================================="
-        puts @conversation.sender_id
-        @messages = @conversation.messages        
+        if user_signed_in?
+            puts @conversation.sender_id
+            @messages = @conversation.messages
+        else
+            redirect_to dont_do_mischievous_path
+        end                
     end
 
     def new
@@ -12,27 +16,35 @@ class MessagesController < ApplicationController
     end
 
     def create
-        puts "===============in create messages==========================="        
-        puts params
-        # @message = @conversation.messages.new(message_params)
-        @message = @conversation.messages.new
-        @message.user_id = current_user.id
-        @message.body = params["Message"]["body"]  
-        @message.read = false      
-        if @message.save
-            redirect_to conversation_messages_path @conversation.as_json        
-        end
+        if user_signed_in?
+            puts "===============in create messages==========================="        
+            puts params
+            # @message = @conversation.messages.new(message_params)
+            @message = @conversation.messages.new
+            @message.user_id = current_user.id
+            @message.body = params["Message"]["body"]  
+            @message.read = false      
+            if @message.save
+                redirect_to conversation_messages_path @conversation.as_json        
+            end
+        else
+            redirect_to dont_do_mischievous_path
+        end        
     end
 
     def fetchNewMessages
-        puts params
-        lastmsgid = params["lastmsgid"]
-        msgs = @conversation.messages.where("id > ?", lastmsgid)        
-        results = {}
-        if msgs.length > 0 
-            results["messages"] = msgs
-        end
-        render json: results
+        if user_signed_in?
+            puts params
+            lastmsgid = params["lastmsgid"]
+            msgs = @conversation.messages.where("id > ?", lastmsgid)        
+            results = {}
+            if msgs.length > 0 
+                results["messages"] = msgs
+            end
+            render json: results
+        else
+            render json: {}
+        end          
     end
 
     private
