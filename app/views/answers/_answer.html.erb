@@ -1,7 +1,7 @@
 
 <p>
-  <strong>Answered_By:</strong>
-  <%= answer.posted_by %>
+  <strong>Answered By:</strong>
+  <%= User.getName(answer.posted_by) %>
 </p>
  
 <p>
@@ -21,10 +21,12 @@
 
     <%= button_to '+1', upvote_question_answer_path(answer.question,answer), method: :post%></td>
     <%= button_to '-1', downvote_question_answer_path(answer.question,answer), method: :post %></td>
-    <%= link_to 'Edit Answer', edit_question_answer_path(answer.question,answer) %><br>
-    <%= link_to 'Destroy Answer', [answer.question, answer],
-               method: :delete,
-               data: { confirm: 'Are you sure?' } %>
+    <% if answer.posted_by.to_i == current_user.id %>
+      <%= link_to 'Edit Answer', edit_question_answer_path(answer.question,answer) %><br>
+      <%= link_to 'Delete Answer', [answer.question, answer],
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+    <%end%>
 </p>
 <% @total_upvotes = AVote.total_up_votes(answer.id)%>
 <p> 

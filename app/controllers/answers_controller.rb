@@ -2,9 +2,11 @@ class AnswersController < ApplicationController
     require 'date'
     def create
         @question = Question.find(params[:question_id])
-        @answer = @question.answers.create(answer_params)
-
+        @answer = @question.answers.build(answer_params)
+        @answer.posted_by = current_user.id
+        @answer.save 
         redirect_to question_path(@question)
+            
     end
 
     def edit
@@ -67,7 +69,7 @@ class AnswersController < ApplicationController
     def update
         @question = Question.find(params[:question_id])
         @answer = @question.answers.find(params[:id])
-        if @answer.update(params.require(:answer).permit(:posted_by,:body))
+        if @answer.update(answer_params)
             redirect_to @question
         else
             render 'edit'
@@ -83,6 +85,6 @@ class AnswersController < ApplicationController
 
     private
         def answer_params
-            params.require(:answer).permit(:posted_by,:body)
+            params.require(:answer).permit(:body)
         end 
 end

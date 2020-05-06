@@ -10,7 +10,13 @@
 
 <p>
     <strong>Posted_ON:</strong>
-    <%= @question.posted_on.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
+    <%= @question.created_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
+</p>
+
+<p>
+    <strong>Posted By:</strong>
+    <%= User.getName(@question.user_id) %>
+
 </p>
 
 <p>
@@ -29,12 +35,18 @@
   <%= @total_dvotes %>
 </p>
 
+<p>
+  <strong>Tags:</strong>
+  <%= raw @question.all_tags %>
+
+</p>
 
 
 <%= button_to '+1', upvote_question_path, method: :post %>
 <%= button_to '-1', downvote_question_path, method: :post %>
-<%= link_to 'Edit' , edit_question_path %><br>
-
+<% if @question.user_id == current_user.id %>
+  <%= link_to 'Edit' , edit_question_path %><br>
+<%end%>
 <h2>Comments on Questions</h2>
 <%= render @question.q_comments %>
 

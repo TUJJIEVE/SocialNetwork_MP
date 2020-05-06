@@ -18,17 +18,22 @@
     <tr>
       <td><%= question.title %></td>
       <td><%= question.text %></td>
+      <td>TAGS:</td>
+      <td><%= question.all_tags %></td>
       <td>UPVOTES:</td>
       <td><%= @upvotes %></td>
       <td>DOWNVOTES:</td>
-      <td><%= @downvotes %></td>     
+      <td><%= @downvotes %></td>
+
       <td><%= button_to '+1', upvote_question_path(question), method: :post%></td>
       <td><%= button_to '-1', downvote_question_path(question), method: :post %></td>
       <td><%= link_to 'Show', question_path(question) %></td>
+      <% if question.user_id == current_user.id %>
       <td><%= link_to 'Edit', edit_question_path(question) %></td>
-      <td><%= link_to 'Destroy', question_path(question),
+      <td><%= link_to 'Delete question', question_path(question),
               method: :delete,
               data: { confirm: 'Are you sure?' } %></td>
+      <%end%>
     </tr>
   <% end %>
 </table>

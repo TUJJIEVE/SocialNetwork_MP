@@ -1,10 +1,6 @@
 <%= form_with(model: [ @question, @question.answers.build ], local: true) do |form| %>
   <p>
-    <%= form.label :posted_by %><br>
-    <%= form.text_field :posted_by %>
-  </p>
-  <p>
-    <%= form.label :body %><br>
+    <%= form.label "Your Answer:" %><br>
     <%= form.text_area :body %>
   </p>
   <p>

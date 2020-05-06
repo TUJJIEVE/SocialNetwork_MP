@@ -1,5 +1,5 @@
 <h1>Edit comment</h1>
-    <%= form_for ([@comment.answer,@comment]) do |form| %>
+    <%= form_for ([@comment.answer.question,@comment.answer,@comment]) do |form| %>
     
     <% if @comment.errors.any? %>
         <div id="error_explanation">
@@ -14,19 +14,14 @@
         </ul>
         </div>
     <% end %>
-    
+   
     <p>
-        <%= form.label :commenter %><br>
-        <%= form.text_field :commenter %>
-    </p>
-    
-    <p>
-        <%= form.label :body %><br>
+        <%= form.label "Your edited comment:" %><br>
         <%= form.text_area :body %>
     </p>
     
     <p>
-        <%= form.submit %>
+        <%= form.submit "Edit comment",class: "button" %>
     </p>
     
     <% end %>

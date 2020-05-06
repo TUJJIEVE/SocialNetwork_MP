@@ -1,7 +1,7 @@
 
 <p>
   <strong>commented_By:</strong>
-  <%= q_comment.commenter %>
+  <%= User.getName(q_comment.commenter) %>
 </p>
  
 <p>
@@ -18,10 +18,12 @@
     <%= q_comment.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
 
 </p>
-
-    <%= link_to 'Destroy comments', [q_comment.question, q_comment],
-               method: :delete,
-               data: { confirm: 'Are you sure?' } %>
-
+    <% if q_comment.commenter.to_i == current_user.id %>
+      <%= link_to 'Edit' , edit_question_q_comment_path(q_comment.question,q_comment) %>
+      <br>
+      <%= link_to 'Destroy comment', [q_comment.question, q_comment],
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+    <%end%>
 
 </p>

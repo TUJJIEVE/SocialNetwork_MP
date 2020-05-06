@@ -62,12 +62,18 @@
 
           <!-- Need to set the url for this form -->
           <%= form_with(as: "postSearch", url: search_questions_path, html: {method: :get}, local: true) do |f| %>
-            <%= f.text_field :keyword, class: "form-control", placeholder: "search post" %>
+            <%= f.text_field :keyword, class: "form-control", placeholder: "Search posts" %>
             <%= f.submit "search posts", class: "btn btn-secondary" %>
           <% end %>
 
+          <%= form_with(as: "postSearch_tag", url: search_questions_tags_path, html: {method: :get}, local: true) do |f| %>
+            <%= f.text_field :keyword, class: "form-control", placeholder: "Search posts by tags" %>
+            <%= f.submit "search posts", class: "btn btn-secondary" %>
+          <% end %>
+
+
           <%= form_with(as: "userSearch", url: search_users_path, html: {method: :get}, local: true) do |f| %>
-            <%= f.text_field :keyword, class: "form-control", placeholder: "search user name" %>
+            <%= f.text_field :keyword, class: "form-control", placeholder: "Search users" %>
             <%= f.submit "search users", class: "btn btn-secondary" %>
           <% end %>
         </div>

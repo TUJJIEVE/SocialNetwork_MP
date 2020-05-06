@@ -1,13 +1,9 @@
 <%= form_with(model: [ @question,@question.q_comments.build ], local: true) do |form| %>
   <p>
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter %>
-  </p>
-  <p>
-    <%= form.label :body %><br>
+    <%= form.label "Your comment on the above question:" %><br>
     <%= form.text_area :body %>
   </p>
   <p>
-    <%= form.submit %>
+    <%= form.submit "Submit Comment:",class: "button" %>
   </p>
 <% end %>

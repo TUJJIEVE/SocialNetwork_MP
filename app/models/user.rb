@@ -17,6 +17,15 @@ class User < ApplicationRecord
     end    
   end
 
+  def self.getName(id)
+    @user = User.find_by_id(id)
+    if @user == nil
+      return "Anonymous"
+    else
+      return @user.uname
+    end
+  end
+
   def User::exist(id)
     user = User.find_by_id(id)
     if user == nil

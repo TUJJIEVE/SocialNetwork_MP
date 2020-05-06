@@ -1,3 +1,4 @@
+
 <%= form_with scope: :question, url: questions_path , local: true do |form| %>
 <% if @question.errors.any? %>
     <div id="error_explanation">
@@ -23,7 +24,13 @@
   </p>
  
   <p>
-    <%= form.submit %>
+    
+    <%= form.text_field :all_tags, placeholder: "Tags seperated with comma" %>
+
+  </p>
+
+  <p>
+    <%= form.submit "Post Question", class: "button" %>
   </p>
 <% end %>
 

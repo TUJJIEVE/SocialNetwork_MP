@@ -26,9 +26,15 @@ class PagesController < ApplicationController
             query = params["keyword"]
         end
         @questions = Question.where("title LIKE '%"+query+"%'")
-        puts @questions.length
     end
     
+    def searchQuestions_tags
+        query = " "
+        if params["keyword"].length >0
+            query = params["keyword"]
+        end
+        @questions = Question.tagged_with(query)
+    end
     def unacceptedRequests        
         if user_signed_in?
             query = {:accepter_id => current_user.id , :status => 0}

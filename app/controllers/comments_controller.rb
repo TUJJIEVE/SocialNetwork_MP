@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
         @question = Question.find(params[:question_id])
         @answer = @question.answers.find(params[:answer_id])
         @comment = @answer.comments.build(comment_params)
+        @comment.commenter = current_user.id
         if @comment.save
             redirect_to question_path(@question)
         else
@@ -20,7 +21,7 @@ class CommentsController < ApplicationController
     end
 
     def update
-        @question = Question.find[params[:question_id]]
+        @question = Question.find(params[:question_id])
         @answer = @question.answers.find(params[:answer_id])
         @comment = @answer.comments.find(params[:id])
         
@@ -40,7 +41,7 @@ class CommentsController < ApplicationController
     end
     private
         def comment_params
-            params.require(:comment).permit(:commenter,:body)
+            params.require(:comment).permit(:body)
 
         end
 

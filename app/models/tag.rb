@@ -1,6 +1,8 @@
 class Tag < ApplicationRecord    
-    validates_presence_of :name , :user_id
+    validates_presence_of :name
     validates :name, uniqueness: true
+    has_many :taggings 
+    has_many :questions, through: :taggings
 
     def Tag::GetId(tagname)
         tags = Tag.where({"name" => tagname})        

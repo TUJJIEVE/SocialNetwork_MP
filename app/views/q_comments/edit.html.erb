@@ -14,21 +14,16 @@
         </ul>
         </div>
     <% end %>
-    
+        
     <p>
-        <%= form.label :commenter %><br>
-        <%= form.text_field :commenter %>
-    </p>
-    
-    <p>
-        <%= form.label :body %><br>
+        <%= form.label "Your edited comment:"%><br>
         <%= form.text_area :body %>
     </p>
     
     <p>
-        <%= form.submit %>
+        <%= form.submit "Edit comment",class: "button" %>
     </p>
     
     <% end %>
     
-    <%= link_to 'Back', question_path(@q_comment.answer.question) %>
+    <%= link_to 'Back', question_path(@q_comment.question) %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_05_180647) do
+ActiveRecord::Schema.define(version: 2020_05_06_113400) do
 
   create_table "a_votes", force: :cascade do |t|
     t.integer "vote_id"
@@ -129,6 +129,15 @@ ActiveRecord::Schema.define(version: 2020_05_05_180647) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "taggings", force: :cascade do |t|
+    t.integer "question_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_taggings_on_question_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.float "popularity", default: 0.0
@@ -193,6 +202,8 @@ ActiveRecord::Schema.define(version: 2020_05_05_180647) do
   add_foreign_key "messages", "users"
   add_foreign_key "q_comments", "questions"
   add_foreign_key "q_votes", "questions"
+  add_foreign_key "taggings", "questions"
+  add_foreign_key "taggings", "tags"
   add_foreign_key "tags", "users"
   add_foreign_key "user_intersts", "tags"
   add_foreign_key "user_intersts", "users"

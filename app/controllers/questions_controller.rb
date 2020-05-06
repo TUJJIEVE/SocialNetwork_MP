@@ -4,6 +4,7 @@ class QuestionsController < ApplicationController
         @questions = Question.all
     end
 
+
     def new
         @question = Question.new
     end
@@ -85,13 +86,9 @@ class QuestionsController < ApplicationController
 
     def create
         # render plain: params[:question].inspect
-        @question = Question.new
+        @question = Question.new(question_params)
         @question.user_id = current_user.id
-        @question.question_id = params[:id]
-        @question.title = params[:question][:title]
-        @question.text = params[:question][:text]
-        @question.posted_on = DateTime.now
-        @question.created_at = DateTime.now
+        
         puts @question.inspect
         if @question.save 
             # flash[:notice] = "New question posted successfully"
@@ -109,7 +106,7 @@ class QuestionsController < ApplicationController
     end
     private
         def question_params
-            params.require(:question).permit(:title,:text)
+            params.require(:question).permit(:title,:text,:all_tags)
 
         end
 

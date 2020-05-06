@@ -3,6 +3,7 @@ class QCommentsController < ApplicationController
     def create
         @question = Question.find(params[:question_id])
         @q_comment = @question.q_comments.build(comment_params)
+        @q_comment.commenter = current_user.id
         if @q_comment.save
             redirect_to question_path(@question)
         else
@@ -19,7 +20,7 @@ class QCommentsController < ApplicationController
     end
 
     def update
-        @question = Question.find[params[:question_id]]
+        @question = Question.find(params[:question_id])
         @q_comment = @question.q_comments.find(params[:id])
         
         if @q_comment.update(comment_params)
@@ -37,7 +38,7 @@ class QCommentsController < ApplicationController
     end
     private
         def comment_params
-            params.require(:q_comment).permit(:commenter,:body)
+            params.require(:q_comment).permit(:body)
 
         end
 
