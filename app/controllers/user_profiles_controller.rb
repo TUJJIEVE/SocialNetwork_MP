@@ -22,7 +22,8 @@ class UserProfilesController < ApplicationController
 
     def edit_intersts
         if user_signed_in?
-            @intersts = UserInterst.Find_by_User(current_user.id)            
+            @intersts = UserInterst.Find_by_User(current_user.id)     
+            @tags = Tag.all       
         else
             redirect_to dont_do_mischievous_path        
         end
@@ -31,22 +32,25 @@ class UserProfilesController < ApplicationController
     def update_intrests
         if user_signed_in?
             tagIds = []
-            puts "==============================="
-            tag_names = params["tags"].split(",")
-            puts "tags :: " 
-            tag_names.each do |tag_name|
-                if tag_name.length > 0 
-                    puts tag_name
-                    id = Tag.GetId(tag_name.squish) #squish will remove trailing spaces
-                    if id != nil 
-                        tagIds << id
-                    else 
-                        puts "error :: unknown tag entered"
+            tag_ids = params["tag_ids"]
+            
+            
+            if tag_ids != nil  
+                tag_ids.each do |tag_id|
+                    if Integer(tag_id, exception: false)
+                        tagid = tag_id.to_i 
+
+                        if tagid > 0 
+                            puts tagid
+                            if Tag.find_by_id(tagid) != nil                    
+                                tagIds << tagid
+                            else 
+                                puts "error :: unknown tagid entered"
+                            end
+                        end 
                     end
                 end
             end
-            puts "==================================="
-            puts tagIds
 
             UserInterst::Delete_by_User(current_user.id)
 

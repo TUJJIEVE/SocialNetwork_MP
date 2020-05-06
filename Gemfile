@@ -25,6 +25,9 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
+# for select2
+# gem 'select2-rails', '~> 4.0', '>= 4.0.3'
+
 # for devise users
 gem 'devise', '~> 4.7', '>= 4.7.1'
 
