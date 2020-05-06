@@ -41,7 +41,7 @@ class UserInterst < ApplicationRecord
     def UserInterst::Exist(user_id,tag_id)
         user_intersts = UserInterst.where({"user_id" => user_id,"tag_id" => tag_id})        
         if user_intersts.length > 0 
-            return user_intersts
+            return user_intersts[0]
         end       
         return nil
     end     
