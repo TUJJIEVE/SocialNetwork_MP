@@ -19,7 +19,7 @@
 <div id="messagebox">
 <% @messages.each do |m| %>
     <div class="card">
-        <%= m.user.user_profile.full_name %> : <%= m.body %> 
+        <%= m.user.user_profile.full_name %> : <%= m.body %> <small><%= m.message_time %></small>  
     </div>
 <% end %>
 </div>
