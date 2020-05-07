@@ -15,7 +15,6 @@
     <% @downvotes = QVote.total_down_votes(question.id) %>
     <tr scope="row"> 
       <td><%= question.title %></td>
-      <td><%= question.text %></td>      
       <td><%= question.all_tags %></td>    
       <td><%= @upvotes %></td>      
       <td><%= @downvotes %></td>

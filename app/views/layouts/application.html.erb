@@ -45,7 +45,7 @@
                 </div>
               </li>
               <li class="nav-item active dropdown">
-                <a class="nav-link dropdown-toggle" href="" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Your profile</a>
+                <a class="nav-link dropdown-toggle" href="" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.uname.upcase%></a>
                 <div class="dropdown-menu" aria-labelledby="dropdown02">
                   <%= link_to 'Change Password', edit_user_registration_path, class: "dropdown-item" %>
                   <%= link_to 'Edit Personal Information', edit_user_profile_path, class: "dropdown-item" %>
