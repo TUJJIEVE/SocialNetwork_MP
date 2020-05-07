@@ -1,6 +1,6 @@
 <div class="displayWindow">
 <div class="container">
-  <h1>Welcome!</h1>
+  <h1>Welcome! <% if current_user != nil %><%= current_user.uname %> <% end %></h1>
   <% if current_user == nil %>
     <p>Register to get started.</p>
     <p>
@@ -9,7 +9,7 @@
   <% end %>      
 </div>  
 <div class="container">
-<h1>Most Popular Questions</h1>
+<h4>Recent Popular Questions</h4>
 
 <table class="table table-light table-striped">
   <thead>
