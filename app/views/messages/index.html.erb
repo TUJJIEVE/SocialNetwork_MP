@@ -23,6 +23,7 @@
     </div>
 <% end %>
 </div>
+<div id="newMessage">
 <%= form_for(:Message, url: create_new_message_path , html: { method: :put }) do |f| %>            
     <%= hidden_field_tag 'id', @conversation.id %>
     <div class="form-group">    
@@ -30,6 +31,6 @@
     </div>  
     <%= f.submit "Send", class: 'btn btn-secondary' %>
 <% end %>
-
+</div>
 </div>
 

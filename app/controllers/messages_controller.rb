@@ -24,8 +24,8 @@ class MessagesController < ApplicationController
             @message.user_id = current_user.id
             @message.body = params["Message"]["body"]  
             @message.read = false      
-            if @message.save
-                redirect_to conversation_messages_path @conversation.as_json        
+            if @message.save                
+                redirect_to conversation_messages_path(params:@conversation.as_json,anchor: 'newMessage')
             end
         else
             redirect_to dont_do_mischievous_path

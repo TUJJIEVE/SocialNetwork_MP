@@ -9,18 +9,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-    <div class="header">
-      <% if user_signed_in? %>
-        <h1><%= current_user.uname.upcase %></h1>
-        <p>Welcome to our website DOCTO</p>
-      <%else%>
-        <h1>Please Login or Register <h1>
-      <%end%>
-    </div>
-
   <body id="<%= controller_name %>_<%= action_name %>">
-
-
      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <a class="navbar-brand" href="<%= root_path %>"> Docto </a>
         <button class="navbar-toggler" type="button" data-toggle="#collapse" data-target="#collapse">
@@ -95,21 +84,17 @@
           <% end %>
         </div>
       </nav>
-    
-    <div style="background-color: white">
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>">
-          <%= value %>
-        </div>
-      <% end %>
-    </div>
+        
+    <div style="height:500px ;overflow: auto">
+      <div style="background-color: white">
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>">
+            <%= value %>
+          </div>
+        <% end %>
+      </div>
+      <%= yield %>
+    </div>   
 
-    <%= yield :top_content %>
-
-    <div class="container">
-      <h1><%= yield :header %></h1>
-    </div>
-
-    <%= yield %>
   </body>
 </html>
