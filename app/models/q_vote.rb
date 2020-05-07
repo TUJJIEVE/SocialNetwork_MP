@@ -23,6 +23,4 @@ class QVote < ApplicationRecord
     @rec = QVote.where(query)
     return @rec.length
   end
-
-
 end

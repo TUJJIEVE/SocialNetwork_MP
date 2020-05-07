@@ -14,13 +14,15 @@ class PagesController < ApplicationController
         #     @total_claps = article.claps.count  ## contains claps given to this article
 
         # end
-        # @questions.each do |question|
-        #     @total_up_votes = QVote.total_up_votes(question.id) ## stores the upvotes to that question
-
-        # end
-
-
-
+        sortedq = {}
+        i = 0
+        @questions.each do |question|
+            sortedq[i] = QVote.total_up_votes(question.id) ## stores the upvotes to that question
+            i+=1
+        end
+        
+        @mostUpVoted = sortedq.sort_by {|k,v| v}.to_h.keys.reverse
+                 
     end
 
     def searchUsers
