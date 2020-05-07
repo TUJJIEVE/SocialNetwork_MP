@@ -16,19 +16,20 @@
     </div>
   <% end %>
  
-  <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
+    <div class="form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title , class: 'form-control' , :required => 'required' ,  placeholder: "Title of Article"%>
+  </div>
+
+  <div class="form-group">
+      <%= form.label :Details %>
+      <%= form.text_area :body , class: 'form-control' , :required => 'required' ,  placeholder: "Article" %>
+  </div>
+  
+  <p>    
+    <%= form.text_field :all_tags, placeholder: "Tags seperated with comma" %>
   </p>
- 
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
- 
-  <p>
-    <%= form.submit %>
-  </p>
+    <%= form.submit "Post Article", class: "btn btn-primary" %>  
  
 <% end %>
  

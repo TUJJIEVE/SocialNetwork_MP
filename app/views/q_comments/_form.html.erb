@@ -1,9 +1,8 @@
 <%= form_with(model: [ @question,@question.q_comments.build ], local: true) do |form| %>
-  <p>
+ <div class="form-group">
     <%= form.label "Your comment on the above question:" %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit "Submit Comment:",class: "button" %>
-  </p>
+    <%= form.text_area :body , class: 'form-control' , :required => 'required' ,  placeholder: "Write your comment"%>
+  </div>
+
+  <%= form.submit "Submit Comment", class: "btn btn-primary" %>  
 <% end %>
