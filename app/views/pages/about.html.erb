@@ -1,18 +1,26 @@
-<div class="container">
-<div>
+<div class="displayWindow">
+<div id="Contact" class="fulldiv">
 <h1> Contact </h1>
-cs16btech11039@iith.ac.in
-cs16btech11029@iith.ac.in
-cs16btech11034@iith.ac.in
-cs16btech11002@iith.ac.in
+<h2> Docto </h2>
+<p>
+This is meant to be a q&a platform with chat support for doctors exclusivly
+</p>
 </div>
-
-<div>
-<h1> add some more </h1>
-</div>
-
-<div>
+<div id="copyrights" class="fulldiv">
 <h1> copyrights </h1>
+<div>
+will upload clear copyrights in few days , for now plese contact via email for permissions .
 </div>
-
+</div>
+<div id="devs" class="fulldiv">
+<h1> Devs </h1>
+<% emails = ["cs16btech11034","cs16btech11039","cs16btech11029" , "cs16btech11002"] %>
+<% names = ["shanmukh" , "ujjieve" , "ramkishan" , "harsha"] %>
+<% [0,1,2,3].each do |i| %>
+<div class="card">
+name  : <%= names[i] %>
+email : <%= emails[i] %>@iith.ac.in
+</div>
+<% end %>
+</div>
 </div>
