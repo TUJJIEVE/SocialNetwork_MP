@@ -9,13 +9,12 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-
     <div class="header">
       <% if user_signed_in? %>
         <h1><%= current_user.uname.upcase %></h1>
         <p>Welcome to our website DOCTO</p>
       <%else%>
-        <h1>Please Login or Register<h1>
+        <h1>Please Login or Register <h1>
       <%end%>
     </div>
 
