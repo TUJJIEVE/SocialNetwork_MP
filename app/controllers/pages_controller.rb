@@ -3,6 +3,24 @@ class PagesController < ApplicationController
     end
 
     def index
+
+        @questions = Question.all
+        @articles = Article.all
+
+        ## display top votes questions and most clapped articles
+
+        # @articles.each do |article|
+
+        #     @total_claps = article.claps.count  ## contains claps given to this article
+
+        # end
+        # @questions.each do |question|
+        #     @total_up_votes = QVote.total_up_votes(question.id) ## stores the upvotes to that question
+
+        # end
+
+
+
     end
 
     def searchUsers
