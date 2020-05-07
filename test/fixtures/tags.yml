@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: tagOne
   popularity: 1.5
   user_id: 1
   id: 1
 
 two:
-  name: MyString
+  name: tagTwo
   popularity: 1.5
   user_id: 1
   id: 2

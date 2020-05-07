@@ -1,3 +1,34 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 
+user_one: 
+  id: 1
+  uname: "dummyUser"
+  full_name: "dummyFullName"
+  dob: <%= Time.now %>
+  college_id: "dummyCollegeId"
+  country: "dummpyCountry"
+  points: 0
+  user_id: 1
+
+user_two: 
+  id: 2
+  uname: "dummyUser2"
+  full_name: "dummyFullName2"
+  dob: <%= Time.now %>
+  college_id: "dummyCollegeId2"
+  country: "dummpyCountry"
+  points: 0
+  user_id: 2
+
+
+user_three: 
+  id: 3
+  uname: "dummyUser3"
+  full_name: "dummyFullName3"
+  dob: <%= Time.now %>
+  college_id: "dummyCollegeId2"
+  country: "dummpyCountry"
+  points: 0
+  user_id: 3
+  

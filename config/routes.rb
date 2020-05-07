@@ -57,4 +57,5 @@ Rails.application.routes.draw do
 
   #misselienous
   get '/mischievous/', to: 'pages#mischievous' , as: :dont_do_mischievous  
+  get '/about/', to: 'pages#about' , as: :about  
 end

@@ -57,6 +57,9 @@ class PagesController < ApplicationController
     def notFound
     end
 
+    def about
+    end
+
     private 
     def getFriendRequests
         query = {:accepter_id => current_user.id , :status => 0}
