@@ -1,9 +1,10 @@
 <%= form_with(model: [ @question, @question.answers.build ], local: true) do |form| %>
-  <p>
-    <%= form.label "Your Answer:" %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
+ <div class="form-group">
+    <%= form.label "Your answer on above question:" %><br>
+    <%= form.text_area :body , class: 'form-control' , :required => 'required' ,  placeholder: "Write your answer"%>
+  </div>
+
+  <%= form.submit "Submit Answer", class: "btn btn-primary" %>  
+
+
 <% end %>
