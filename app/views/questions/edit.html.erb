@@ -1,3 +1,5 @@
+<div class="displayWindow">
+<div class="container">
 <h1>Edit Question</h1>
  
 <%= form_with(model: @question, local: true) do |form| %>
@@ -16,20 +18,40 @@
     </div>
   <% end %>
  
-  <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </p>
- 
-  <p>
-    <%= form.label :text %><br>
-    <%= form.text_area :text %>
-  </p>
- 
-  <p>
-    <%= form.submit %>
-  </p>
+  <div class="form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title , class: 'form-control' , :required => 'required' ,  placeholder: "Write your question"%>
+  </div>
+
+  <div class="form-group">
+      <%= form.label :Details %>
+      <%= form.text_area :text , class: 'form-control' , :required => 'required' ,  placeholder: "Enter details of question" %>
+  </div>
+  
+  <% sintrests  = " "%>
+  <% if @qintersts != nil %>
+      <% @q_intersts.each do |t| %> 
+      <% sintrests += t.tag.name %> 
+      <% sintrests += " , "%> 
+      <% end %>   
+  <% end %>
+  <div class="form-group">    
+    <%= form.label :tags_previously_selected %>
+    <%= form.text_field :tags, class: 'form-control' , value: sintrests , readonly: true %>
+  </div>
+
+
+  <div><b><h4>select tags from below </h4> <h6><i> (* use ctrl+mouse select to select multiple ) </i></h6></b> </div>
+       
+  <div class="form-group">
+      <%= select_tag 'tag_ids', options_from_collection_for_select(Tag.all,"id","name") , :multiple => true, class: 'form-control'%>
+  </div>
+
+  <%= form.submit "submit edit request", class: "btn btn-primary" %>  
  
 <% end %>
  
 <%= link_to 'Back', questions_path %>
+
+</div>
+</div>
