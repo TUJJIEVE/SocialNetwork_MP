@@ -1,5 +1,5 @@
 <div class="displayWindow">
-<h1>Results : </h1>
+<h1>Questions : </h1>
 <% if @questions != nil %>
     <h4>Number of Results: <%= @questions.length %> </h4>
     <% number = 1 %>
@@ -13,6 +13,25 @@
         <div>
     <% end %>
 <%else%>
-    <h4>No such posts found</h4>
+    <h4>No such questions found</h4>
+<% end %>
+</div>
+
+<div class="displayWindow">
+<h1>Articles : </h1>
+<% if @articles != nil %>
+    <h4>Number of Results: <%= @articles.length %> </h4>
+    <% number = 1 %>
+    <% @articles.each do |article| %>
+        <div class="card">
+            <%= number %>.
+            <%= article.title %>
+            
+            <%= link_to 'SHOW', article_path(article.id) %>
+            <% number+=1 %>
+        <div>
+    <% end %>
+<%else%>
+    <h4>No such article found</h4>
 <% end %>
 </div>

@@ -56,6 +56,7 @@ class PagesController < ApplicationController
             query = params["keyword"]
         end
         @questions = Question.where("title LIKE '%"+query+"%'")
+        @articles = Article.where("title LIKE '%"+query+"%'")
     end
     
     def searchQuestions_tags
@@ -64,6 +65,8 @@ class PagesController < ApplicationController
             query = params["keyword"]
         end
         @questions = Question.tagged_with(query)
+        @articles = Article.where("title LIKE '%"+query+"%'")
+
     end
     def unacceptedRequests        
         if user_signed_in?
