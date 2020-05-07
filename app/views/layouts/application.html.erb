@@ -9,7 +9,19 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
+    <div class="header">
+      <% if user_signed_in? %>
+        <h1><%= current_user.uname.upcase %></h1>
+        <p>Welcome to our website DOCTO</p>
+      <%else%>
+        <h1>Please Login or Register<h1>
+      <%end%>
+    </div>
+
   <body id="<%= controller_name %>_<%= action_name %>">
+
+
      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <a class="navbar-brand" href="<%= root_path %>"> Docto </a>
         <button class="navbar-toggler" type="button" data-toggle="#collapse" data-target="#collapse">
@@ -42,7 +54,7 @@
                 </div>
               </li>
               <li class="nav-item active dropdown">
-                <a class="nav-link dropdown-toggle" href="" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.uname %></a>
+                <a class="nav-link dropdown-toggle" href="" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Your profile</a>
                 <div class="dropdown-menu" aria-labelledby="dropdown02">
                   <%= link_to 'Change Password', edit_user_registration_path, class: "dropdown-item" %>
                   <%= link_to 'Edit Personal Information', edit_user_profile_path, class: "dropdown-item" %>
