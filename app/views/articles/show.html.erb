@@ -1,45 +1,65 @@
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
- 
-<p>
-  <strong>Text:</strong>
-  <%= @article.body %>
-</p>
+<div class="displayWindow">
+  <div class="container"> 
+    <h1> Article </h1>
+    <h5>
+      <div class="form-group">
+          <strong><label>Title :</label></strong>
+          <input type="text" class="form-control" value="<%= @article.title %>"readonly>       
+      </div>
+      <div class="form-group">
+          <label>Article :</label>
+          <input type="text_area" class="form-control" value="<%= @article.body %>"readonly>       
+      </div>
+      <div class="form-group" id="viewarticleTags" style="display:None">
+      <label>Tags :</label>
+      <input type="text_area" class="form-control" value="<%= @article.all_tags %>"readonly>       
+      </div>
+    </h5>    
+    <div id="articleFurtherDetails" style="display:None">
+      <div class="row">
+        <div class="col">
+            <strong>Posted On:</strong>
+            <%= @article.created_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
+        </div>
+        <div class ="col">
+            <strong>Posted By:</strong>
+            <%= User.getName(@article.posted_by) %>
+        </div>
+        <div class ="col">
+          <strong>Last Edited:</strong>
+          <%= @article.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>  
+        </div>
+        <% @total_claps = Clap.total_claps(@article.id)%>
+        <div class ="col">
+          <strong> Claps :</strong>
+          <%= @total_claps %>
+        </div>
 
-<p>
-    <strong>Posted_ON:</strong>
-    <%= @article.created_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
-</p>
+        
+        <div class="col">
+        <%= button_to 'Clap', clap_article_path, method: :post %>
+      
+        </div>
+        <div class="col">
+        <% if @article.posted_by == current_user.id %>
+          <%= link_to 'Edit' , edit_article_path %><br>
+        <%end%>
+        </div>
+      </div>
+    </div>
+  <div>
+  <div class="container">
+  </div>
+    <div class="row">
+    <div class="col">
+    <button onclick="showAndHide('viewArticleTags')" class="btn btn-primary">view article Tags</button>
+    </div>
+    <div class="col">
+    <button onclick="showAndHide('FurtherArticle')" class="btn btn-primary"> Further Article</button>
+    </div>
+    </div>
+  
+</div>
 
-<p>
-    <strong>Posted By:</strong>
-    <%= User.getName(@article.posted_by) %>
-
-</p>
-
-<p>
-    <strong>Last_Edited:</strong>
-    <%= @article.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
-</p>
-<% @total_claps = Clap.total_claps(@article.id)%>
-<p> 
-  <strong> Total Claps:</strong>
-  <%= @total_claps %>
-</p> 
-
-
-<p>
-  <strong>Tags:</strong>
-  <%= raw @article.all_tags %>
-
-</p>
-
-
-<%= button_to 'clap', clap_article_path, method: :post %>
-<% if @article.posted_by == current_user.id %>
-  <%= link_to 'Edit' , edit_article_path %><br>
-<%end%>
 
 <%= link_to 'Back' , articles_path %>
