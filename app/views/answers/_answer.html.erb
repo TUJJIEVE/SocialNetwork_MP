@@ -1,49 +1,59 @@
 
-<p>
-  <strong>Answered By:</strong>
-  <%= User.getName(answer.posted_by) %>
-</p>
- 
-<p>
-  <strong>Answer:</strong>
-  <%= answer.body %>
-</p>
+<div class="card-dark">
+    <div class="container">
+      <button onclick="showAndHide('answerId<%=answer.id%>')" class="btn ">   <strong>Answer:</strong>
+      <%= answer.body %></button>
 
-<p>
-    <strong>Answered_On:</strong>
-    <%= answer.created_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
-</p>
-<p>
-    <strong>Last_Edited_on:</strong>
-    <%= answer.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
+    <div class="row" id="answerId<%=answer.id%>" style="display:None">
+      
+      <% @total_upvotes = AVote.total_up_votes(answer.id)%>
+      <% @total_dvotes = AVote.total_down_votes(answer.id)%>
+      <div class="col">
+        <strong>Answered By:</strong>
+        <%= User.getName(answer.posted_by) %>
+        <strong>Answered_On:</strong>
+          <%= answer.created_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d ') %>
+        <strong>Last_Edited_on:</strong>
+        <%= answer.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d ') %>
+        <strong> Up votes:</strong>
+          <%= @total_upvotes %>
+          <strong> Down votes:</strong>
+          <%= @total_dvotes %>
+      </div>
+     
+      <div class="col">
+          <%= button_to '+1', upvote_question_answer_path(answer.question,answer), method: :post%>
+          <%= button_to '-1', downvote_question_answer_path(answer.question,answer), method: :post %>
+          <% if answer.posted_by.to_i == current_user.id %>
+            <%= link_to 'Edit Answer', edit_question_answer_path(answer.question,answer) %><br>
+            <%= link_to 'Delete Answer', [answer.question, answer],
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' } %>
+          <%end%>
+      </div>
+      
+    
+      </div>
 
-</p>
+      <button onclick="showAndHide('answerComments<%=answer.id%>')" class="btn ">show comments</button>
+      <button onclick="showAndHide('newanswerComment<%=answer.id%>')" class="btn ">add comment to this</button>
+    </div>
 
-    <%= button_to '+1', upvote_question_answer_path(answer.question,answer), method: :post%></td>
-    <%= button_to '-1', downvote_question_answer_path(answer.question,answer), method: :post %></td>
-    <% if answer.posted_by.to_i == current_user.id %>
-      <%= link_to 'Edit Answer', edit_question_answer_path(answer.question,answer) %><br>
-      <%= link_to 'Delete Answer', [answer.question, answer],
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %>
-    <%end%>
-</p>
-<% @total_upvotes = AVote.total_up_votes(answer.id)%>
-<p> 
-  <strong> Up votes:</strong>
-  <%= @total_upvotes %>
-</p>
 
-<% @total_dvotes = AVote.total_down_votes(answer.id)%>
-<p> 
-  <strong> Down votes:</strong>
-  <%= @total_dvotes %>
-</p>
 
+
+<div id="answerComments<%=answer.id%>" style="display:None">
 <h2>Comments</h2>
 <% @question = answer.question %>
 <% @answer = answer %>
 <%= render @answer.comments %>
+</div>
 
+
+<div id="newanswerComment<%=answer.id%>" style="display:None">
 <h2>Add a comment:</h2>
 <%= render 'comments/aform' %>
+</div>
+
+</div>
+</div>

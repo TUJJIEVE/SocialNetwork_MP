@@ -1,64 +1,95 @@
-<p>
-  <strong>Title:</strong>
-  <%= @question.title %>
-</p>
- 
-<p>
-  <strong>Text:</strong>
-  <%= @question.text %>
-</p>
+<div class="displayWindow">
+  <div class="container"> 
+    <h1> Question </h1>
+    <h5>
+      <div class="form-group">
+          <strong><label>Title:</label></strong>
+          <input type="text" class="form-control" value="<%= @question.title %>"readonly>       
+      </div>
+      <div class="form-group">
+          <label>Details:</label>
+          <input type="text_area" class="form-control" value="<%= @question.text %>"readonly>       
+      </div>
+      <div class="form-group" id="viewQuestionTags" style="display:None">
+      <label>Tags:</label>
+      <input type="text_area" class="form-control" value="<%= @question.all_tags %>"readonly>       
+      </div>
+    </h5>    
+    <div id="questionFurtherDetails" style="display:None">
+      <div class="row">
+        <div class="col">
+            <strong>Posted_ON:</strong>
+            <%= @question.created_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
+        </div>
+        <div class ="col">
+            <strong>Posted By:</strong>
+            <%= User.getName(@question.user_id) %>
+        </div>
+        <div class ="col">
+          <strong>Last_Edited:</strong>
+          <%= @question.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>  
+        </div>
+        <% @total_upvotes = QVote.total_up_votes(@question.id)%>
+        <div class ="col">
+          <strong> Up votes:</strong>
+          <%= @total_upvotes %>
+        </div>
 
-<p>
-    <strong>Posted_ON:</strong>
-    <%= @question.created_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
-</p>
+        <% @total_dvotes = QVote.total_down_votes(@question.id)%>
+        <div class ="col">
+          <strong> Down votes:</strong>
+          <%= @total_dvotes %>
+        </div>
+        
+        <div class="col">
+        <%= button_to '+1', upvote_question_path, method: :post %>
+      
+        </div>
+        <div class="col">
+      
+        <%= button_to '-1', downvote_question_path, method: :post %>
+        </div>
+        <div class="col">
+        <% if @question.user_id == current_user.id %>
+          <%= link_to 'Edit' , edit_question_path %><br>
+        <%end%>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+    <div id="commentsOnQuestions" style="display:None">
+    <h3>Comments on Questions</h3>
+    <%= render @question.q_comments %>
+    </div>
+  <div>
+  <div class="container">
+    <div id="add_new_q_comment" style="display:None">
+      <h2> Add Comments to question </h2>
+      <%= render 'q_comments/form' %>
+    </div> 
+  </div>
+    <div class="row">
+    <div class="col">
+    <button onclick="showAndHide('viewQuestionTags')" class="btn btn-primary">sview Question Tags</button>
+    </div>
+    <div class="col">
+    <button onclick="showAndHide('questionFurtherDetails')" class="btn btn-primary">show further details</button>
+    </div>
+    <div class="col">
+    <button onclick="showAndHide('commentsOnQuestions')" class="btn btn-primary">show comments on questions</button>
+    </div>
+    <div class="col">
+    <button onclick="showAndHide('add_new_q_comment')" class="btn btn-primary">add new question comment</button>
+    </div>
+    </div>
+  <div class="container"> 
+  <h1>Answers</h1>
+  <%= render @question.answers %>
+  </div>
+  <button onclick="showAndHide('createNewAnswer')" class="btn btn-secondary">add new answer</button>
+  <div id="createNewAnswer" style="display:None">
+    <h2>Add a answer:</h2>
+    <%= render 'answers/form' %>
+  </div>
 
-<p>
-    <strong>Posted By:</strong>
-    <%= User.getName(@question.user_id) %>
-
-</p>
-
-<p>
-    <strong>Last_Edited:</strong>
-    <%= @question.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
-</p>
-<% @total_upvotes = QVote.total_up_votes(@question.id)%>
-<p> 
-  <strong> Up votes:</strong>
-  <%= @total_upvotes %>
-</p>
-
-<% @total_dvotes = QVote.total_down_votes(@question.id)%>
-<p> 
-  <strong> Down votes:</strong>
-  <%= @total_dvotes %>
-</p>
-
-<p>
-  <strong>Tags:</strong>
-  <%= raw @question.all_tags %>
-
-</p>
-
-
-<%= button_to '+1', upvote_question_path, method: :post %>
-<%= button_to '-1', downvote_question_path, method: :post %>
-<% if @question.user_id == current_user.id %>
-  <%= link_to 'Edit' , edit_question_path %><br>
-<%end%>
-<h2>Comments on Questions</h2>
-<%= render @question.q_comments %>
-
-<h2> Add Comments to question </h2>
-<%= render 'q_comments/form' %>
-
-
-<h2>Answers</h2>
-<%= render @question.answers %>
-
-<h2>Add a answer:</h2>
-<%= render 'answers/form' %>
-
-
-<%= link_to 'Back' , questions_path %>
+</div>
