@@ -22,7 +22,17 @@ class PagesController < ApplicationController
         end
         
         @mostUpVoted = sortedq.sort_by {|k,v| v}.to_h.keys.reverse
-                 
+    
+        sortedq = {}
+        i = 0
+        @articles.each do |article|
+            sortedq[i] = Clap.total_claps(article.id) ## stores the upvotes to that article
+            i+=1
+        end
+        
+        @mostClapped = sortedq.sort_by {|k,v| v}.to_h.keys.reverse
+    
+
     end
 
     def searchUsers
