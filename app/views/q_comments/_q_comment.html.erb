@@ -1,29 +1,29 @@
+<div class="container">
+<div class="row card">
+<div class="col">   
+  <button onclick="showAndHide('commentId<%=q_comment.id%>')" class="btn btn-secondary">  <strong>q_comment:</strong> <%= q_comment.body %></button>
+</div>
 
-<p>
+<div class="col">
+</div>
+<div class="col">
+  <div id="commentId<%=q_comment.id%>" style="display:None">
   <strong>commented_By:</strong>
   <%= User.getName(q_comment.commenter) %>
-</p>
- 
-<p>
-  <strong>q_comment:</strong>
-  <%= q_comment.body %>
-</p>
-
-<p>
-    <strong>commented_On:</strong>
-    <%= q_comment.created_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
-</p>
-<p>
-    <strong>Last_Edited_on:</strong>
-    <%= q_comment.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
-
-</p>
-    <% if q_comment.commenter.to_i == current_user.id %>
-      <%= link_to 'Edit' , edit_question_q_comment_path(q_comment.question,q_comment) %>
-      <br>
-      <%= link_to 'Destroy comment', [q_comment.question, q_comment],
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %>
-    <%end%>
-
-</p>
+  <strong>commented_On:</strong>
+  <%= q_comment.created_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
+  <strong>Last_Edited_on:</strong>
+  <%= q_comment.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
+  <strong>Last_Edited_on:</strong>
+  <%= q_comment.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
+  <% if q_comment.commenter.to_i == current_user.id %>
+    <%= link_to 'Edit' , edit_question_q_comment_path(q_comment.question,q_comment) %>
+    <br>
+    <%= link_to 'Destroy comment', [q_comment.question, q_comment],
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+  <%end%>
+  </div>
+</div>
+</div>
+</div>
