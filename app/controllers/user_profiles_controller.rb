@@ -13,13 +13,14 @@ class UserProfilesController < ApplicationController
             flash[:error] = "no such user exist"
             redirect_to '/'
         end
-        @intersts = UserInterst.Find_by_User(current_user.id)
+        @intersts = UserInterst.Find_by_User(id)
     end       
 
     def edit
         if user_signed_in? 
             @user_profile = UserProfile.where({:user_id => current_user.id}).last        
         else
+            flash[:error] = "login to edit"
             redirect_to dont_do_mischievous_path
         end
     end
@@ -29,6 +30,7 @@ class UserProfilesController < ApplicationController
             @intersts = UserInterst.Find_by_User(current_user.id)     
             @tags = Tag.all       
         else
+            flash[:error] = "login to edit"
             redirect_to dont_do_mischievous_path        
         end
     end
@@ -63,6 +65,7 @@ class UserProfilesController < ApplicationController
             end
             redirect_to current_user_profile_path
         else
+            flash[:error] = "login to edit"
             redirect_to dont_do_mischievous_path        
         end
     end
@@ -86,13 +89,13 @@ class UserProfilesController < ApplicationController
 
             #save
             if @user_profile.save 
-                puts 'saved successfully.............'                
+                flash[:success] = 'saved successfully'                
             else
-                puts 'failed miserablly............'
-            end
-            redirect_to '/user_profiles/'
+                flash[:error] =  'not saved please try again.'
+            end            
         else
-            flash[:error] = "what is this...." 
+            flash[:error] = "login to update userprofile"            
         end
+        redirect_to '/user_profiles/'
     end
 end
