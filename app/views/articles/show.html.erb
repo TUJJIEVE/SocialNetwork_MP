@@ -1,0 +1,45 @@
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+ 
+<p>
+  <strong>Text:</strong>
+  <%= @article.body %>
+</p>
+
+<p>
+    <strong>Posted_ON:</strong>
+    <%= @article.created_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
+</p>
+
+<p>
+    <strong>Posted By:</strong>
+    <%= User.getName(@article.posted_by) %>
+
+</p>
+
+<p>
+    <strong>Last_Edited:</strong>
+    <%= @article.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
+</p>
+<% @total_claps = Clap.total_claps(@article.id)%>
+<p> 
+  <strong> Total Claps:</strong>
+  <%= @total_claps %>
+</p> 
+
+
+<p>
+  <strong>Tags:</strong>
+  <%= raw @article.all_tags %>
+
+</p>
+
+
+<%= button_to 'clap', clap_article_path, method: :post %>
+<% if @article.posted_by == current_user.id %>
+  <%= link_to 'Edit' , edit_article_path %><br>
+<%end%>
+
+<%= link_to 'Back' , articles_path %>

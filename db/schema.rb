@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_06_113400) do
+ActiveRecord::Schema.define(version: 2020_05_07_062434) do
 
   create_table "a_votes", force: :cascade do |t|
     t.integer "vote_id"
@@ -52,6 +52,31 @@ ActiveRecord::Schema.define(version: 2020_05_06_113400) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.integer "posted_by"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ataggings", force: :cascade do |t|
+    t.integer "article_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_ataggings_on_article_id"
+    t.index ["tag_id"], name: "index_ataggings_on_tag_id"
+  end
+
+  create_table "claps", force: :cascade do |t|
+    t.integer "claps_by"
+    t.integer "article_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_claps_on_article_id"
   end
 
   create_table "collegues", force: :cascade do |t|
@@ -197,6 +222,9 @@ ActiveRecord::Schema.define(version: 2020_05_06_113400) do
   add_foreign_key "a_votes", "answers"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "questions"
+  add_foreign_key "ataggings", "articles"
+  add_foreign_key "ataggings", "tags"
+  add_foreign_key "claps", "articles"
   add_foreign_key "comments", "answers"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"

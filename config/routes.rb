@@ -17,6 +17,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :articles do
+    member do
+      post 'clap'
+    end
+  end
+  
   get '/users/question_search/', to: 'pages#searchQuestions', as: :search_questions
   get '/users/question_tag_search/', to: 'pages#searchQuestions_tags', as: :search_questions_tags
   get '/users/search/' , to: 'pages#searchUsers' , as: :search_users  
