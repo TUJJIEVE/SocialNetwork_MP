@@ -49,6 +49,33 @@ window.getNotifications = function(){
     });
 }
 
+window.getSelectedOptionValues = function(sel) {
+    var opts = [],opt;
+    var len = sel.options.length;
+    for (var i = 0; i < len; i++) {
+      opt = sel.options[i];
+  
+      if (opt.selected) {
+        opts.push(opt.innerHTML);        
+      }
+    }
+  
+    return opts;
+}
+window.makeNewQuestionDropDownResponsibe = function(){
+    
+    var mydropdown = document.getElementById('newQuestionDropDown');
+
+    mydropdown.onchange = function(){
+        console.log("drop down changed");
+        var finalTagString = getSelectedOptionValues(this).join(',');
+        console.log(finalTagString);        
+        document.getElementById('all_tags_for_newQuestionShow').innerHTML = finalTagString;
+        document.getElementById('all_tags_for_newQuestionValue').innerHTML = finalTagString;
+    }
+}
+
+
 
 window.fetchNewMessages = function(){
     console.log("fetiching new messages if any");        
@@ -106,7 +133,11 @@ $(document).ready(function() {
     }
     //---------
 
- 
+    //for new question dropdown 
+    if(document.getElementById("questions_new")){
+     makeNewQuestionDropDownResponsibe();
+    }
+
     if(userLoggedin()){
         // window.setInterval(function(){
         //     getNotifications()
@@ -117,6 +148,8 @@ $(document).ready(function() {
 
 //on turbo linkschange function
 $(document).on('turbolinks:load', function() { 
+
+    makeNewQuestionDropDownResponsibe();
    //for messages index page only
     var message_index_page = document.getElementById("messages_index");     
     console.log("page changed ... ");
@@ -131,5 +164,10 @@ $(document).on('turbolinks:load', function() {
             clearInterval(recFetchMsg);
             console.log("stoped recFetchMsg");
         }
+   }
+
+   var questions_new_page = document.getElementById("questions_new");
+   if(questions_new_page){
+    makeNewQuestionDropDownResponsibe();
    }
 });

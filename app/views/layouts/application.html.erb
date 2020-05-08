@@ -10,6 +10,16 @@
   </head>
 
   <body id="<%= controller_name %>_<%= action_name %>">
+
+      <% #hidden elements used in js ##dont remove %>
+      <span id="currentuser" class="d-none"><%= current_user.to_json %></span>  
+      <% if user_signed_in? %>
+        <span id="currentuserprofile" class="d-none"><%= current_user.user_profile.to_json %></span>  
+      <% end %>
+      <%  #complted hidden elements %>
+
+
+
      <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <a class="navbar-brand" href="<%= root_path %>"> Docto </a>
         <button class="navbar-toggler" type="button" data-toggle="#collapse" data-target="#collapse">

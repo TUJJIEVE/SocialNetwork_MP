@@ -29,13 +29,19 @@
   <div><b><h4>select tags from below </h4> <h6><i> (* use ctrl+mouse select to select multiple ) </i></h6></b> </div>
        
   <div class="form-group">
-      <%= select_tag 'tag_ids', options_from_collection_for_select(Tag.all,"id","name") , :multiple => true, class: 'form-control'%>
+      <%= select_tag 'tag_names', options_from_collection_for_select(Tag.all,"name","name") , :multiple => true, class: 'form-control' , id: 'newQuestionDropDown'%>
+  </div>
+  <div class="card">
+      <strong>Selected Tags::</strong>
+      <div id="all_tags_for_newQuestionShow" >
+      </div> 
+  </div>    
+  <div class="form-group">
+    <%= form.text_field :all_tags, id: 'all_tags_for_newQuestionValue',:hidden => true %>  
   </div>
 
-  <p>    
-    <%= form.text_field :all_tags, placeholder: "Tags seperated with comma" %>
-  </p>
-    <%= form.submit "Post Question", class: "btn btn-primary" %>  
+  <%= form.submit "Post Question", class: "btn btn-primary" %>  
+
 <% end %>
 
 <%= link_to 'Back', questions_path %>

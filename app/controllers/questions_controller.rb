@@ -120,6 +120,11 @@ class QuestionsController < ApplicationController
 
     def create
         # render plain: params[:question].inspect
+    
+        params["question"]["all_tags"] = params["tag_names"].join(",")
+        
+        puts question_params
+    
         @question = Question.new(question_params)
         @question.user_id = current_user.id
         
@@ -141,7 +146,6 @@ class QuestionsController < ApplicationController
     private
         def question_params
             params.require(:question).permit(:title,:text,:all_tags)
-
         end
 
 end
