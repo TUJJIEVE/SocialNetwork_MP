@@ -14,7 +14,7 @@
         <%= f.text_field :tags, class: 'form-control' , value: sintrests , readonly: true %>
         </div>
          
-        <div><b><h4>select tags from below </h4> <h6><i> (* use ctrl+mouse select to select multiple ) </i></h6></b> </div>
+        <div><b><h4>select tags from below </h4> <h6><i> (* use ctrl+mouse select to select multiple & you can search with prefix ) </i></h6></b> </div>
        
         <div class="form-group">
         <%= select_tag 'tag_ids', options_from_collection_for_select(@tags,"id","name") , :multiple => true, class: 'form-control' , id: 'tagDropDownForUserInterst'%>
