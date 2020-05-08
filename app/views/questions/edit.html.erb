@@ -29,9 +29,9 @@
   </div>
   
   <% sintrests  = " "%>
-  <% if @qintersts != nil %>
-      <% @q_intersts.each do |t| %> 
-      <% sintrests += t.tag.name %> 
+  <% if @question.tags != nil %>
+      <% @question.tags.each do |t| %> 
+      <% sintrests += t.name.to_s %> 
       <% sintrests += " , "%> 
       <% end %>   
   <% end %>

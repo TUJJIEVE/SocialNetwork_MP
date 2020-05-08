@@ -50,7 +50,7 @@
         <%= button_to '-1', downvote_question_path, method: :post %>
         </div>
         <div class="col">
-        <% if @question.user_id == current_user.id %>
+        <% if current_user.present? &&  @question.user_id == current_user.id %>
           <%= link_to 'Edit' , edit_question_path %><br>
         <%end%>
         </div>
