@@ -76,6 +76,19 @@ window.makeNewQuestionDropDownResponsibe = function(){
 }
 
 
+window.makeUserIntrestEditDropDownResponsibe = function(){
+    
+    var mydropdown = document.getElementById('tagDropDownForUserInterst');
+
+    mydropdown.onchange = function(){
+        console.log("drop down changed");
+        var finalTagString = getSelectedOptionValues(this).join(',');
+        console.log(finalTagString);        
+        document.getElementById('all_tags_for_UserIntrestEdit').innerHTML = finalTagString;
+        
+    }
+}
+
 
 window.fetchNewMessages = function(){
     console.log("fetiching new messages if any");        
@@ -137,6 +150,10 @@ $(document).ready(function() {
     if(document.getElementById("questions_new")){
      makeNewQuestionDropDownResponsibe();
     }
+    
+    if(document.getElementById("user_profiles_edit_intersts")){
+        makeUserIntrestEditDropDownResponsibe();
+    }
 
     if(userLoggedin()){
         // window.setInterval(function(){
@@ -170,4 +187,7 @@ $(document).on('turbolinks:load', function() {
    if(questions_new_page){
     makeNewQuestionDropDownResponsibe();
    }
+   if(document.getElementById("user_profiles_edit_intersts")){
+    makeUserIntrestEditDropDownResponsibe();
+    }
 });
