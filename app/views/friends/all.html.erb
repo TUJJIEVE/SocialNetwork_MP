@@ -22,11 +22,13 @@
               <div class="container">
                 <div class="row">
                   <% if u.sender.id != current_user.id %>
-                    <%= link_to u.sender.user_profile.full_name, show_user_profile_path(u.sender_id) %>
+                    <%= link_to u.sender.uname.upcase + ":->", show_user_profile_path(u.sender_id) %>
                   <% else %>
-                    <%= link_to u.accepter.user_profile.full_name, show_user_profile_path(u.accepter_id) %>
+                    <%= link_to u.accepter.uname.upcase + ":->" , show_user_profile_path(u.accepter_id) %>
                   <% end %>
+                  <td>
                   <%= link_to 'send Message', conversation_path(params: {"Conversation": {"reciver_id": u.accepter_id, "sender_id": u.sender_id}}), method: :put %>
+                  </td>
                 </div>
               </div>
             </li>

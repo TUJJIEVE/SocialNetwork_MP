@@ -34,7 +34,7 @@ class ArticlesController < ApplicationController
             @clap.claps_by = current_user.id
             
             if @clap.save
-                falsh[:success] = "Liked the article"
+                flash[:success] = "Liked the article"
                 redirect_to article_path(@article)
             else
                 puts "ERRROR :cannot clap"

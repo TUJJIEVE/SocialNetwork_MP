@@ -1,42 +1,65 @@
 
 <div class="card-dark">
     <div class="container">
-      <button onclick="showAndHide('answerId<%=answer.id%>')" class="btn ">   <strong>Answer:</strong>
+      <button onclick="showAndHide('answerId<%=answer.id%>')" class="btn btn-primary ">   <strong>Answer:</strong>
       <%= answer.body %></button>
 
     <div class="row" id="answerId<%=answer.id%>" style="display:None">
       
       <% @total_upvotes = AVote.total_up_votes(answer.id)%>
       <% @total_dvotes = AVote.total_down_votes(answer.id)%>
+      <div class = "row">
       <div class="col">
+        
         <strong>Answered By:</strong>
         <%= User.getName(answer.posted_by) %>
+      </div>
+      <div class="col">
         <strong>Answered_On:</strong>
           <%= answer.created_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d ') %>
+      </div>
+      <div class="col">
         <strong>Last_Edited_on:</strong>
         <%= answer.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d ') %>
+      </div>
+      <div class="col">
         <strong> Up votes:</strong>
           <%= @total_upvotes %>
+      </div>
+      <div class="col">
           <strong> Down votes:</strong>
           <%= @total_dvotes %>
       </div>
-      <% if current_user.present? %>     
+      </div>
+      <% if current_user.present? %>    
+      <div class ="row"> 
       <div class="col">
-          <%= button_to '+1', upvote_question_answer_path(answer.question,answer), method: :post%>
-          <%= button_to '-1', downvote_question_answer_path(answer.question,answer), method: :post %>
+          <%= link_to "", upvote_question_answer_path(answer.question,answer), method: :post, class: "fas fa-thumbs-up" %>
+      </div>
+      <div class="col">
+
+        <%= link_to "", downvote_question_answer_path(answer.question,answer), method: :post, class: "fas fa-thumbs-down" %>
+
           <% if answer.posted_by.to_i == current_user.id %>
+      </div>
+      <div class="col">
+
             <%= link_to 'Edit Answer', edit_question_answer_path(answer.question,answer) %><br>
+      </div>
+      <div class="col">
+
             <%= link_to 'Delete Answer', [answer.question, answer],
                       method: :delete,
                       data: { confirm: 'Are you sure?' } %>
+      </div>
           <%end%>
       </div>
       <%end%>
     
       </div>
 
-      <button onclick="showAndHide('answerComments<%=answer.id%>')" class="btn ">show comments</button>
-      <button onclick="showAndHide('newanswerComment<%=answer.id%>')" class="btn ">add comment to this</button>
+      <button onclick="showAndHide('answerComments<%=answer.id%>')" class="btn btn-primary">show comments</button>
+      <button onclick="showAndHide('newanswerComment<%=answer.id%>')" class="btn btn-primary ">add comment to this</button>
     </div>
 
 
