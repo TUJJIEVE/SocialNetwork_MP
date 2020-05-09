@@ -4,33 +4,27 @@
 
 
 .signInWindow {
-    position: relative;
-    width: 400px;
-   
-    left: calc(50% - 400px/2);
-    top: calc(50% - 400px/2 - 0px);
-    padding: 10px;
+  position: relative;
+  width: 400px;
 
-    background: rgb(107, 105, 94);
-    
-    border-radius: 10px;
+  left: calc(50% - 400px / 2);
+  top: calc(50% - 400px / 2 - 0px);
+  padding: 10px;
+
+  background: rgb(107, 105, 94);
+
+  border-radius: 10px;
 }
 
-body {  
-    background-image: url(asset_path("medicalbg.jpg"));
-    background-size: 100%;
-    height: 100%;
-    background-repeat: no-repeat;        
-    opacity: 0.75;
-    
-};
+body {
+}
 
 .displayWindow {
-    background: rgb(168, 166, 153);   
-    border-radius: 10px;   
+  background: rgb(168, 166, 153);
+  border-radius: 10px;
 }
 
 .fulldiv {
-    height: 100%;            
-    position: relative;
+  height: 100%;
+  position: relative;
 }

@@ -1,36 +1,49 @@
-<div class="displayWindow">
-<span id="conversationId" class="d-none"><%= @conversation.id %></span>
-<% if %>
-<span id="lastMsgId" class="d-none"><%= @messages.last.id %></span>
-<% else %>
-<span id="lastMsgId" class="d-none"><%=0%></span>
-<% end %>
-<span id="currentUserId" class="d-none"><%= current_user.id %></span>
-<span id="currentUserUname" class="d-none"><%= current_user.uname %></span>
-<% if current_user.id == @conversation.sender.id %>
-    <span id="otherUserId" class="d-none"><%= @conversation.reciver.id %></span>
-    <span id="otherUserUname" class="d-none"><%= @conversation.reciver.uname %></span>
-<% else %>
-    <span id="otherUserId" class="d-none"><%= @conversation.sender.id %></span>
-    <span id="otherUserUname" class="d-none"><%= @conversation.sender.uname %></span>
-<% end %>
-
-<h1> Conversation between <%= @conversation.sender.uname %> and <%= @conversation.reciver.uname %>  </h1>
-<div id="messagebox">
-<% @messages.each do |m| %>
-    <div class="card">
-        <%= m.user.user_profile.full_name %> : <%= m.body %> <small><%= m.message_time %></small>  
-    </div>
-<% end %>
+<div class="container">
+  <div class="row">
+    <span id="conversationId" class="d-none"><%= @conversation.id %></span>
+    <% if @messages.last != nil %>
+      <span id="lastMsgId" class="d-none"><%= @messages.last.id %></span>
+    <% else %>
+      <span id="lastMsgId" class="d-none"><%= 0 %></span>
+    <% end %>
+    <span id="currentUserId" class="d-none"><%= current_user.id %></span>
+    <span id="currentUserUname" class="d-none"><%= current_user.uname %></span>
+    <% if current_user.id == @conversation.sender.id %>
+      <span id="otherUserId" class="d-none"><%= @conversation.reciver.id %></span>
+      <span id="otherUserUname" class="d-none"><%= @conversation.reciver.uname %></span>
+    <% else %>
+      <span id="otherUserId" class="d-none"><%= @conversation.sender.id %></span>
+      <span id="otherUserUname" class="d-none"><%= @conversation.sender.uname %></span>
+    <% end %>
+  </div>
+  <div class="row justify-content-center">
+    <h1><%= @conversation.sender.uname %> <i class="far fa-comments"></i> <%= @conversation.reciver.uname %>  </h1>
+  </div>
+  <div id="messagebox">
+    <% @messages.each do |message| %>
+      <div class="container bg-light rounded">
+        <div class="row align-items-center">
+          <div class="col-auto mr-auto">
+            <%= message.user.uname %> : <%= message.body %>
+          </div>
+          <div class="col-auto ml-auto">
+            <%= message.message_time %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="container">
+    <%= form_for(:Message, url: create_new_message_path, html: {method: :put}, class: "form-inline") do |f| %>
+      <div class="row">
+        <%= hidden_field_tag 'id', @conversation.id %>
+        <div class="col-10">
+          <%= f.text_field :body, class: "form-control", placeholder: 'new message', :required => true %>
+        </div>
+        <div class="col-2">
+          <%= f.submit "Send", class: 'btn btn-outline-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
-<div id="newMessage">
-<%= form_for(:Message, url: create_new_message_path , html: { method: :put }) do |f| %>            
-    <%= hidden_field_tag 'id', @conversation.id %>
-    <div class="form-group">    
-        <%= f.text_field :body, class: 'form-control',placeholder: 'send new message'%>
-    </div>  
-    <%= f.submit "Send", class: 'btn btn-secondary' %>
-<% end %>
-</div>
-</div>
-
