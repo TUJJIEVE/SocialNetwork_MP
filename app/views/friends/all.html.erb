@@ -1,21 +1,38 @@
-<div class="displayWindow">
-<h1>Friends : </h1>
-<div class="card">
-<%= link_to 'pending requests', pending_requests_path %>
-<%= link_to 'accept requests', accept_requests_path %>
-</div>
-<h4>Number of Results: <%= @friends.length %> </h4>
-<% number = 1 %>
-<% @friends.each do |u| %>
-    <div class="card">
-        <%= number %>.
-        <% if u.sender.id != current_user.id %>            
-            <%= link_to u.sender.user_profile.full_name , show_user_profile_path(u.sender_id) %>            
-        <% else %>
-            <%= link_to u.accepter.user_profile.full_name , show_user_profile_path(u.accepter_id) %>                       
-        <% end %>
-        <%= link_to 'send Message',conversation_path(params:{"Conversation":{"reciver_id":u.accepter_id,"sender_id":u.sender_id}}),method: :put %>
-        <% number+=1 %>
-    <div>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-auto mx-auto my-auto text-center">
+      <h1>Friends</h1>
+      <hr class="my-4">
+      <div class="row">
+        <div class="col-auto">
+          <%= link_to 'pending requests', pending_requests_path, class: "btn btn-outline-primary" %>
+        </div>
+        <div class="col-auto">
+          <%= link_to 'accept requests', accept_requests_path, class: "btn btn-outline-primary" %>
+        </div>
+      </div>
+      <hr class="my-4">
+      <% if @friends.length == 0 %>
+        <h4>No Friends Yet</h4>
+      <% else %>
+        <h4>Number of Friends: <%= @friends.length %></h4>
+        <ol>
+          <% @friends.each do |u| %>
+            <li>
+              <div class="container">
+                <div class="row">
+                  <% if u.sender.id != current_user.id %>
+                    <%= link_to u.sender.user_profile.full_name, show_user_profile_path(u.sender_id) %>
+                  <% else %>
+                    <%= link_to u.accepter.user_profile.full_name, show_user_profile_path(u.accepter_id) %>
+                  <% end %>
+                  <%= link_to 'send Message', conversation_path(params: {"Conversation": {"reciver_id": u.accepter_id, "sender_id": u.sender_id}}), method: :put %>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </ol>
+      <% end %>
+    </div>
+  </div>
 </div>
