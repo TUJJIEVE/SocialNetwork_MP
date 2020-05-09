@@ -9,7 +9,6 @@
             <div class="container">
               <%= Clap.total_claps(article.id) %>
               <%= link_to "", clap_article_path(article), method: :post, class: "fas fa-hand-peace" %>
-              <i class="far fa-hand-peace"></i>
             </div>
           </div>
           <div class="col-3 p-2"><%= article.title %></div>
