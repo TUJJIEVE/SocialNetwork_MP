@@ -16,11 +16,14 @@
       <td><%= article.all_tags %></td>
       <td><%= Clap.total_claps(article.id) %></td>
       <td><%= link_to 'Show', article_path(article) %></td>
+      <% if current_user.present? %>     
+
       <% if article.posted_by == current_user.id %>
         <td><%= link_to 'Edit', edit_article_path(article) %></td>
         <td><%= link_to 'Delete article', article_path(article),
                 method: :delete,
                 data: { confirm: 'Are you sure?' } %></td>
+      <%end%>
       <%end%>
     </tr>
   <% end %>

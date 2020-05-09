@@ -20,7 +20,7 @@
           <strong> Down votes:</strong>
           <%= @total_dvotes %>
       </div>
-     
+      <% if current_user.present? %>     
       <div class="col">
           <%= button_to '+1', upvote_question_answer_path(answer.question,answer), method: :post%>
           <%= button_to '-1', downvote_question_answer_path(answer.question,answer), method: :post %>
@@ -31,7 +31,7 @@
                       data: { confirm: 'Are you sure?' } %>
           <%end%>
       </div>
-      
+      <%end%>
     
       </div>
 

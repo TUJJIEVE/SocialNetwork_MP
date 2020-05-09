@@ -1,7 +1,7 @@
 <div class="container">
 <div class="row card">
 <div class="col">   
-  <button onclick="showAndHide('commentIdA<%=comment.id%>')" class="btn btn-secondary">  <strong>comment:</strong><%= comment.body %></button>
+  <button onclick="showAndHide('commentIdA<%=comment.id%>')" class="btn btn-secondary">  <strong><%= User.getName(comment.commenter)%>:</strong><%= comment.body %></button>
 </div>
 
 <div class="col">
@@ -15,6 +15,8 @@
   
   <strong>Last_Edited_on:</strong>
   <%= comment.updated_at.in_time_zone("Asia/Calcutta").strftime('%a %b %d %H:%M:%S %Z %Y') %>
+  <% if current_user.present? %>     
+
   <% if comment.commenter.to_i == current_user.id %>
       
   <%= link_to 'Edit Comment', edit_question_answer_comment_path(@question,comment.answer,comment) %>
@@ -23,6 +25,7 @@
             method: :delete,
             data: { confirm: 'Are you sure?' } %>
 
+  <%end%>
 <%end%>
   </div>
 </div>

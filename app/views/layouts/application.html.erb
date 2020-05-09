@@ -39,6 +39,7 @@
         <li class="nav-item">
           <a class="nav-link" href="<%= all_friends_path %>">Friends</a>
         </li>
+      
         <li class="nav-item">
           <a class="nav-link" href="<%= questions_path %>">Questions</a>
         </li>
@@ -76,6 +77,7 @@
     </ul>
   </div>
 </nav>
+<% if current_user != nil %>
 <div class="container">
   <div class="row align-items-center justify-content-around">
     <!-- Need to set the url for this form -->
@@ -95,7 +97,7 @@
     <% end %>
   </div>
 </div>
-
+<%end%>
 <div class="container text-center">
   <% flash.each do |type, message| %>
     <div class="alert alert-<%= {"success" => 'success', "error" => 'danger', "alert" => 'warning', "notice" => 'info'}[type] %>">

@@ -18,15 +18,16 @@
       <td><%= question.all_tags %></td>    
       <td><%= @upvotes %></td>      
       <td><%= @downvotes %></td>
-
-      <td><%= button_to '+1', upvote_question_path(question), method: :post%></td>
-      <td><%= button_to '-1', downvote_question_path(question), method: :post %></td>
       <td><%= link_to 'Show', question_path(question) %></td>
-      <% if current_user.present? && question.user_id == current_user.id %>
-      <td><%= link_to 'Edit', edit_question_path(question) %></td>
-      <td><%= link_to 'Delete', question_path(question),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+      <% if current_user.present? %>
+        <td><%= button_to '+1', upvote_question_path(question), method: :post%></td>
+        <td><%= button_to '-1', downvote_question_path(question), method: :post %></td>
+        <% if question.user_id == current_user.id %>
+          <td><%= link_to 'Edit', edit_question_path(question) %></td>
+          <td><%= link_to 'Delete', question_path(question),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %></td>
+        <%end%>
       <%end%>
     </tr>
   <% end %>
