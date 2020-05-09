@@ -10,7 +10,7 @@
           <label>Article :</label>
           <input type="text_area" class="form-control" value="<%= @article.body %>"readonly>       
       </div>
-      <div class="form-group" id="viewarticleTags" style="display:None">
+      <div class="form-group" id="viewArticleTags" style="display:None">
       <label>Tags :</label>
       <input type="text_area" class="form-control" value="<%= @article.all_tags %>"readonly>       
       </div>
@@ -31,14 +31,13 @@
         </div>
         <% @total_claps = Clap.total_claps(@article.id)%>
         <div class ="col">
-          <strong> Claps :</strong>
+          <strong> Likes :</strong>
           <%= @total_claps %>
         </div>
 
         
         <div class="col">
-        <%= button_to 'Clap', clap_article_path, method: :post %>
-      
+<%= link_to "", clap_article_path(@article), method: :post, class: "fas fa-hand-peace" %>
         </div>
         <div class="col">
         <% if @article.posted_by == current_user.id %>
@@ -48,14 +47,13 @@
       </div>
     </div>
   <div>
-  <div class="container">
-  </div>
+
     <div class="row">
     <div class="col">
     <button onclick="showAndHide('viewArticleTags')" class="btn btn-primary">view article Tags</button>
     </div>
     <div class="col">
-    <button onclick="showAndHide('FurtherArticle')" class="btn btn-primary"> Further Article</button>
+    <button onclick="showAndHide('articleFurtherDetails')" class="btn btn-primary"> Further Details</button>
     </div>
     </div>
   

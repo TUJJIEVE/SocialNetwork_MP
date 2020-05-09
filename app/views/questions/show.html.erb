@@ -42,12 +42,12 @@
         </div>
         
         <div class="col">
-        <%= button_to '+1', upvote_question_path, method: :post %>
+        <%= link_to "", upvote_question_path(@question), method: :post, class: "fas fa-thumbs-up" %>
       
         </div>
         <div class="col">
       
-        <%= button_to '-1', downvote_question_path, method: :post %>
+        <%= link_to "", downvote_question_path(@question), method: :post, class: "fas fa-thumbs-down" %>
         </div>
         <div class="col">
         <% if current_user.present? &&  @question.user_id == current_user.id %>

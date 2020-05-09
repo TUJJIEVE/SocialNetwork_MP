@@ -24,7 +24,9 @@ class ArticlesController < ApplicationController
         @is_ok = Clap.check_if_present(current_user.id,params[:id])
         
         if @is_ok != nil 
+            flash[:success] = "Already Liked this article"
             puts "Already clapped this article"
+            redirect_to article_path(@article)
         else
             puts "clapping this article"
             @clap = @article.claps.build()
@@ -32,7 +34,8 @@ class ArticlesController < ApplicationController
             @clap.claps_by = current_user.id
             
             if @clap.save
-                redirect_to articles_path(@article)
+                falsh[:success] = "Liked the article"
+                redirect_to article_path(@article)
             else
                 puts "ERRROR :cannot clap"
             end

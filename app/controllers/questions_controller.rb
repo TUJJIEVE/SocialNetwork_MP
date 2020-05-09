@@ -37,10 +37,12 @@ class QuestionsController < ApplicationController
             @is_ok = QVote.check_if_present(current_user.uname,params[:id])
             
             if @is_ok != nil && @is_ok[0].vote_type !=1
+                flash[:success] = "Already Up-voted this question"
+                redirect_to question_path(@question)
                 puts "Already voted this question"
             else
                 if ((@is_ok != nil) && (@is_ok[0].vote_type == 1))
-                    flash[:notice] = "Already downvoted this question"
+                    
                     @is_ok[0].destroy
                 end 
                 puts "Upvoting this question"
@@ -49,11 +51,11 @@ class QuestionsController < ApplicationController
                 @upvote.voted_by = current_user.uname
                 puts @upvote.vote_id
                 if @upvote.save
-                    flash[:success] = "Success: vote is registered"
+                    flash[:success] = "Success: Upvote is registered"
                 else
                     flash[:error] = "ERRROR : vote is not saved "
                 end
-                redirect_to questions_path(@question)
+                redirect_to question_path(@question)
             end
         else
             flash[:notice] = "please register to vote"
@@ -69,7 +71,8 @@ class QuestionsController < ApplicationController
         if user_signed_in?  
             @is_ok = QVote.check_if_present(current_user.uname,params[:id])
             if @is_ok != nil && @is_ok[0].vote_type !=0
-                flash[:notice] = "Already voted this question"
+                flash[:success] = "Already Down-voted this question"
+                redirect_to question_path(@question)
                 puts "ALready Voted this question"
             
             else
@@ -85,6 +88,7 @@ class QuestionsController < ApplicationController
                 @downvote.voted_by = current_user.uname
                 puts @downvote.vote_id
                 if @downvote.save
+                    flash[:success] = "Success: Downvote is registered"
                     redirect_to question_path(@question)
                 else
                     puts "Error :cannot vote"
