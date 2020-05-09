@@ -4,8 +4,27 @@ class PagesController < ApplicationController
 
     def index
 
+        @questions_you_intrested_in = nil
         @questions = Question.all
         @articles = Article.all
+
+        if current_user != nil 
+            #fills questions you intrested in
+            @questions_you_intrested_in = customizedQuestionsForUser()
+            if @questions_you_intrested_in != nil 
+                sortedq = {}
+                i = 0
+                puts "=============================="
+                puts @questions_you_intrested_in
+                puts "================================="
+                @questions_you_intrested_in.each do |question|
+                    sortedq[i] = QVote.total_up_votes(question.id) ## stores the upvotes to that question
+                    i+=1
+                end
+                @mostUpVotedQuestions_you_intrested_in = sortedq.sort_by {|k,v| v}.to_h.keys.reverse
+            end      
+        end
+
 
         ## display top votes questions and most clapped articles
 
@@ -97,5 +116,25 @@ class PagesController < ApplicationController
     def getFriendRequests
         query = {:accepter_id => current_user.id , :status => 0}
         return Friend.where(query).length    
+    end
+
+    def customizedQuestionsForUser 
+        user_intersts = UserInterst.Find_by_User(current_user.id)  
+        if user_intersts == nil 
+            return nil
+        end
+        tagIds = []
+        
+        user_intersts.each { |r|
+            tagIds << r.tag_id
+        }
+
+        questionIds = Tagging.where({tag_id:tagIds}).pluck(:question_id).uniq
+        
+        userIntrestedQuestions = Question.find(questionIds)
+        #might be used in next update
+        # userNotIntrestedQuestions = Question.where.not(id: questionIds)
+
+        return  userIntrestedQuestions
     end
 end
