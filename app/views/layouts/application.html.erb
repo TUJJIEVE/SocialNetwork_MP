@@ -15,7 +15,21 @@
   <script src="https://kit.fontawesome.com/60436b24b7.js" crossorigin="anonymous"></script>
 
 </head>
-<body>
+
+<% # plese dont remove id for this body it messses up things %>
+<body id="<%= controller_name %>_<%= action_name %>">
+
+<% #PLESE DONT REMOVE THIS BLOCK JS WILL MESS UP  %>
+<% #============================================== %>
+<% #hidden elements used in js ##dont remove %>
+<span id="currentuser" class="d-none"><%= current_user.to_json %></span>  
+<% if user_signed_in? %>
+  <span id="currentuserprofile" class="d-none"><%= current_user.user_profile.to_json %></span>  
+<% end %>
+<%  #complted hidden elements %>
+<% #============================================== %>
+
+
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
   <div class="navbar-brand">
     <img class="rounded" src="<%= asset_path("logo.png") %>" alt=" logo" height="30px" width="40px"></div>
