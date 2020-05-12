@@ -4,7 +4,7 @@
     <hr class="my-4">
     <div class="row">
       <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-        <h3>Recent Popular Questions</h3>
+        <h3>Top <%= @mostUpVoted.count%> Popular Questions</h3>
         <% @mostUpVoted.each do |i| %>
           <% question = @questions[i] %>
           <% @upvotes = QVote.total_up_votes(question.id) %>
@@ -33,7 +33,7 @@
         <% end %>
       </div>
       <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
-        <h3>Recent Popular Articles</h3>
+        <h3>Top <%= @mostClapped.count %> Popular Articles</h3>
         <% @mostClapped.each do |i| %>
           <% article = @articles[i] %>
           <div class="row align-items-center bg-light">

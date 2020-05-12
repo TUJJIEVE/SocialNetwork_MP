@@ -111,7 +111,7 @@ class QuestionsController < ApplicationController
             edited_at = DateTime.now
             @question.updated_at = edited_at
             # puts edited_at  
-            if @question.update(params.require(:question).permit(:title,:text))
+            if @question.update(question_params)
                 redirect_to @question
             else 
                 render 'edit'

@@ -22,7 +22,7 @@ class PagesController < ApplicationController
         end
         
         @mostUpVoted = sortedq.sort_by {|k,v| v}.to_h.keys.reverse
-    
+        @mostUpVoted = @mostUpVoted[0,10]
         sortedq = {}
         i = 0
         @articles.each do |article|
@@ -31,7 +31,7 @@ class PagesController < ApplicationController
         end
         
         @mostClapped = sortedq.sort_by {|k,v| v}.to_h.keys.reverse
-    
+        @mostClapped = @mostClapped[0,10]
 
     end
 
