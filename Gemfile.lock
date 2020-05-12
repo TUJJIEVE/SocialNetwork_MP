@@ -1,3 +1,9 @@
+PATH
+  remote: https:/github.com/freerobby/gmail_smtp
+  specs:
+    gmail_smtp (0.1.0)
+      rails (~> 6.0.2, >= 6.0.2.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -218,6 +224,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   devise (~> 4.7, >= 4.7.1)
+  gmail_smtp!
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
   pg
