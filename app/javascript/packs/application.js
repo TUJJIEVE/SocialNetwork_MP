@@ -126,7 +126,7 @@ window.userLoggedin = function(){
 }
 
 //constants
-var timeForNotifications = 3500;
+var timeForNotifications = 4500;
 var timeForGetMessages = 2000;
 
 //global vars
@@ -156,9 +156,9 @@ $(document).ready(function() {
     }
 
     if(userLoggedin()){
-        // window.setInterval(function(){
-        //     getNotifications()
-        //   }, timeForNotifications);
+        window.setInterval(function(){
+            getNotifications()
+          }, timeForNotifications);
     }   
     console.log("loaded application js");       
 });
@@ -166,7 +166,15 @@ $(document).ready(function() {
 //on turbo linkschange function
 $(document).on('turbolinks:load', function() { 
 
-    makeNewQuestionDropDownResponsibe();
+    //for question page
+    if(document.getElementById("questions_new")){
+        makeNewQuestionDropDownResponsibe();
+    }
+    //for  edit intrests in userprogiles 
+    if(document.getElementById("user_profiles_edit_intersts")){
+        makeUserIntrestEditDropDownResponsibe();
+    }
+
    //for messages index page only
     var message_index_page = document.getElementById("messages_index");     
     console.log("page changed ... ");
