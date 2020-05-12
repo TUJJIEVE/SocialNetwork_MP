@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_05_07_062434) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "a_votes", force: :cascade do |t|
     t.integer "vote_id"
     t.integer "vote_type"
@@ -222,9 +219,6 @@ ActiveRecord::Schema.define(version: 2020_05_07_062434) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  add_foreign_key "a_votes", "answers"
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "answers", "questions"
   add_foreign_key "ataggings", "articles"
   add_foreign_key "ataggings", "tags"
   add_foreign_key "claps", "articles"
