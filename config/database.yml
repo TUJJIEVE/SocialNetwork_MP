@@ -48,7 +48,4 @@ production:
  adapter: postgresql
  encoding: unicode
  pool: <%= ENV.fetch("RAILS_MAX_THREADS"){5}%>
- database: docto_production
- username: docto
- password: <%= ENV['DOCTO_DATABASE_PASSWORD'] %>
  url: <%= ENV['DATABASE_URL'] %>
