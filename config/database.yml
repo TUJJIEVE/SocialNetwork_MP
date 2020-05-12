@@ -32,7 +32,7 @@ development:
   host: localhost
   database: docto_development
   username: docto
-  password: docto_2020@IITH
+  password: <%= ENV['DOCTO_DATABASE_PASSWORD']%>
 
 test:
   adapter: postgresql
@@ -43,3 +43,12 @@ test:
   database: docto_test
   username: docto
   password: docto_2020@IITH
+
+production:
+ adapter: postgresql
+ encoding: unicode
+ pool: <%= ENV.fetch("RAILS_MAX_THREADS"){5}%>
+ database: docto_production
+ username: docto
+ password: <%= ENV['DOCTO_DATABASE_PASSWORD'] %>
+ url: <%= ENV['DATABASE_URL'] %>
