@@ -6,7 +6,7 @@
     <% @users.each do |u| %>
       <div class="card">
         <%= number %>.
-        <%= u.full_name %>
+        <%= u.uname.upcase %>
         <%= link_to 'show Personal Information', show_user_profile_path(u.user_id) %>
         <% if user_signed_in? && current_user.id != u.user_id %>
           <%= link_to 'send Friend Request', send_request_path(params: {"id": u.user_id}) %>

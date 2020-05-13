@@ -1,0 +1,57 @@
+// Place all the styles related to the Articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+// .fancy {
+//     position: relative;
+//     background-color: #FFC;
+//     padding: 2rem;
+//     max-width: 1920px;
+//   }
+  
+//   .fancy::before {
+//     content: "";
+  
+//     position : absolute;
+//     z-index  : -1;
+//     bottom   : 15px;
+//     right    : 5px;
+//     width    : 50%;
+//     top      : 80%;
+//     max-width: 1920px;
+  
+//     box-shadow: 0px 13px 10px black;
+//     transform: rotate(4deg);
+//   }
+
+// p.impact {
+//     font-family: Garamond, Georgia, serif;
+// }
+
+// .fancy {
+//     padding : 2em;
+//     max-width: 1920%;
+//     max-height: 1080px;
+//     box-sizing: border-box;
+//     font-family: Garamond, Georgia, serif;
+//     /* At the bottom of our background stack,
+//        let's have a misty grey solid color */
+//     background-color: #E4E4D9;
+  
+//     /* We stack linear gradients on top of each
+//        other to create our color strip effect.
+//        As you will notice, color gradients are
+//        considered to be images and can be
+//        manipulated as such */
+//     background-image: linear-gradient(175deg, rgba(0,0,0,0) 95%, #8da389 95%),
+//                       linear-gradient( 85deg, rgba(0,0,0,0) 95%, #8da389 95%),
+//                       linear-gradient(175deg, rgba(0,0,0,0) 90%, #b4b07f 90%),
+//                       linear-gradient( 85deg, rgba(0,0,0,0) 92%, #b4b07f 92%),
+//                       linear-gradient(175deg, rgba(0,0,0,0) 85%, #c5a68e 85%),
+//                       linear-gradient( 85deg, rgba(0,0,0,0) 89%, #c5a68e 89%),
+//                       linear-gradient(175deg, rgba(0,0,0,0) 80%, #ba9499 80%),
+//                       linear-gradient( 85deg, rgba(0,0,0,0) 86%, #ba9499 86%),
+//                       linear-gradient(175deg, rgba(0,0,0,0) 75%, #9f8fa4 75%),
+//                       linear-gradient( 85deg, rgba(0,0,0,0) 83%, #9f8fa4 83%),
+//                       linear-gradient(175deg, rgba(0,0,0,0) 70%, #74a6ae 70%),
+//                       linear-gradient( 85deg, rgba(0,0,0,0) 80%, #74a6ae 80%);
+//   }

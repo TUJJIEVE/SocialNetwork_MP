@@ -27,7 +27,11 @@
                     <%= link_to u.accepter.uname.upcase + ":->" , show_user_profile_path(u.accepter_id) %>
                   <% end %>
                   <td>
-                  <%= link_to 'send Message', conversation_path(params: {"Conversation": {"reciver_id": u.accepter_id, "sender_id": u.sender_id}}), method: :put %>
+                  <% if u.accepter_id == current_user.id %>
+                    <%= link_to 'send Message', conversation_path(params: {"Conversation": {"reciver_id": u.sender_id, "sender_id": current_user.id}}), method: :put %>
+                  <%else%>
+                    <%= link_to 'send Message', conversation_path(params: {"Conversation": {"reciver_id": u.accepter_id, "sender_id": current_user.id}}), method: :put %>
+                  <%end%>   
                   </td>
                 </div>
               </div>
