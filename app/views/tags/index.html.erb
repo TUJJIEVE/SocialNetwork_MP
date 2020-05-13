@@ -23,7 +23,7 @@
                 <h5><%= tag.name %></h5>
               </div>
               <div class="col-6 ml-auto">
-                created by user id <%= tag.user_id %>
+                created by user id <%= User.getName(tag.user_id) %>
               </div>
             </div>
           </div>
