@@ -69,7 +69,7 @@ class PagesController < ApplicationController
             query = params["keyword"]
         end
         @questions = Question.tagged_with(query)
-        @articles = Article.where("title LIKE '%"+query+"%'")
+        @articles = Article.tagged_with(query) #where("title LIKE '%"+query+"%'")
 
     end
     def unacceptedRequests        
