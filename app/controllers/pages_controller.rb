@@ -17,12 +17,16 @@ class PagesController < ApplicationController
         sortedq = {}
         i = 0
         @questions.each do |question|
-            sortedq[i] = QVote.total_up_votes(question.id) ## stores the upvotes to that question
-            i+=1
-        end
+            temp = QVote.total_up_votes(question.id) - QVote.total_down_votes(question.id)
+            if temp > 0
+                sortedq[i] = temp ## stores the upvotes to that question
+                i+=1
         
+            end
+        end
+
         @mostUpVoted = sortedq.sort_by {|k,v| v}.to_h.keys.reverse
-    
+        @mostUpVoted = @mostUpVoted[0,10]
         sortedq = {}
         i = 0
         @articles.each do |article|
@@ -31,7 +35,7 @@ class PagesController < ApplicationController
         end
         
         @mostClapped = sortedq.sort_by {|k,v| v}.to_h.keys.reverse
-    
+        @mostClapped = @mostClapped[0,10]
 
     end
 
@@ -65,7 +69,7 @@ class PagesController < ApplicationController
             query = params["keyword"]
         end
         @questions = Question.tagged_with(query)
-        @articles = Article.where("title LIKE '%"+query+"%'")
+        @articles = Article.tagged_with(query) #where("title LIKE '%"+query+"%'")
 
     end
     def unacceptedRequests        
