@@ -17,10 +17,14 @@ class PagesController < ApplicationController
         sortedq = {}
         i = 0
         @questions.each do |question|
-            sortedq[i] = QVote.total_up_votes(question.id) ## stores the upvotes to that question
-            i+=1
-        end
+            temp = QVote.total_up_votes(question.id) - QVote.total_down_votes(question.id)
+            if temp > 0
+                sortedq[i] = temp ## stores the upvotes to that question
+                i+=1
         
+            end
+        end
+
         @mostUpVoted = sortedq.sort_by {|k,v| v}.to_h.keys.reverse
         @mostUpVoted = @mostUpVoted[0,10]
         sortedq = {}
