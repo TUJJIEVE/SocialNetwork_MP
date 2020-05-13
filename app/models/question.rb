@@ -8,6 +8,8 @@ class Question < ApplicationRecord
     has_many :taggings, dependent: :destroy
     has_many :tags, through: :taggings
 
+    has_one_attached :qimage  , :dependent => :purge_later
+
     def all_tags=(names)
         self.tags = names.split(",").map do |name|
             Tag.where(name: name.strip).first_or_create!
