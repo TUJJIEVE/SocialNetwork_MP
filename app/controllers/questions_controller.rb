@@ -112,6 +112,9 @@ class QuestionsController < ApplicationController
             @question.updated_at = edited_at
             
                  
+            if params["question"]["qimage"] != nil 
+                @question.qimage.attach(params["question"]["qimage"])  
+            end            
             
             # puts edited_at  
             if @question.update(question_params)
@@ -134,7 +137,7 @@ class QuestionsController < ApplicationController
     
         @question = Question.new(question_params)
         @question.user_id = current_user.id
-        
+
         if params["question"]["qimage"] != nil 
             @question.qimage.attach(params["question"]["qimage"])  
         end
