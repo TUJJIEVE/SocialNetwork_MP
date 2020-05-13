@@ -14,8 +14,10 @@
         <label>attached image :</label>
         <div>
             <%if @question.qimage.attached? %>                
-                <%= image_tag( @question.qimage,:class=>"displayProfilePictureInEdit")%>
-            <% end %>                
+                <%= image_tag( @question.qimage)%>
+            <% else %>                
+              "no image attached"
+            <% end %>
         </div>
     </div>    
       <div class="form-group" id="viewQuestionTags" style="display:None">

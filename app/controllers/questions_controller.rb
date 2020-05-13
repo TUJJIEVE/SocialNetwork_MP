@@ -110,6 +110,9 @@ class QuestionsController < ApplicationController
             # time = params[:time]
             edited_at = DateTime.now
             @question.updated_at = edited_at
+            
+                 
+            
             # puts edited_at  
             if @question.update(question_params)
                 redirect_to @question
@@ -131,6 +134,10 @@ class QuestionsController < ApplicationController
     
         @question = Question.new(question_params)
         @question.user_id = current_user.id
+        
+        if params["question"]["qimage"] != nil 
+            @question.qimage.attach(params["question"]["qimage"])  
+        end
         
         puts @question.inspect
         if @question.save 
