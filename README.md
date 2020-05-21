@@ -10,6 +10,7 @@ then run the following commands.*
     rails server
 ```
 ##### The application was deployed on Heroku #####
+*For proper functioning of confirmation mails make necessary changes to the config variable in production.rb*
 
 *Software requirement specification, Software Architecture and structural charts can be found in DOCS folder*
 
