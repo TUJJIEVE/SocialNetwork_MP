@@ -1,5 +1,7 @@
 # README
 
+Link for ease of access to software document ->  https://drive.google.com/drive/folders/1rdnou_tA03m4U12y7yVhG895BXiGs7rU?usp=drive_link (Same files in DOCS folder of this repo)
+
 using ruby 2.7.1 and rails 6.0.2.2
 
 *Make sure you are in the root directory of the Project folder and have the required version of ruby and rails
